@@ -1,0 +1,751 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>multi-view-Xu Chang</title><link href='https://fonts.loli.net/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic-ext,cyrillic,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+  .typora-export h1::after, .typora-export h2::after, .typora-export h3::after, .typora-export h4::after, .typora-export h5::after, .typora-export h6::after { content: ""; display: block; height: 100px; margin-bottom: -100px; }
+}
+
+
+/* meyer reset -- http://meyerweb.com/eric/tools/css/reset/ , v2.0 | 20110126 | License: none (public domain) */
+
+@include-when-export url(https://fonts.loli.net/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic-ext,cyrillic,latin-ext);
+
+/* =========== */
+
+/* pt-serif-regular - latin */
+/* pt-serif-italic - latin */
+/* pt-serif-700 - latin */
+/* pt-serif-700italic - latin */
+:root {
+	--active-file-bg-color: #dadada;
+	--active-file-bg-color: rgba(32, 43, 51, 0.63);
+	--active-file-text-color: white;
+	--bg-color: #f3f2ee;
+	--text-color: #1f0909;
+	--control-text-color: #444;
+	--rawblock-edit-panel-bd: #e5e5e5;
+
+	--select-text-bg-color: rgba(32, 43, 51, 0.63);
+  --select-text-font-color: white;
+}
+
+pre {
+	--select-text-bg-color: #36284e;
+	--select-text-font-color: #fff;
+}
+
+html {
+	font-size: 16px;
+}
+
+html, body {
+	background-color: #f3f2ee;
+	font-family: "PT Serif", 'Times New Roman', Times, serif;
+	color: #1f0909;
+	line-height: 1.5em;
+}
+
+/*#write {
+	overflow-x: auto;
+    max-width: initial;
+	padding-left: calc(50% - 17em);
+    padding-right: calc(50% - 17em);
+}
+
+@media (max-width: 36em) {
+ 	#write {
+ 		padding-left: 1em;
+    	padding-right: 1em;
+ 	}
+}*/
+
+#write {
+	max-width: 40em;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+			max-width: 914px;
+	}
+}
+
+ol li {
+	list-style-type: decimal;
+	list-style-position: outside;
+}
+ul li {
+	list-style-type: disc;
+	list-style-position: outside;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+blockquote,
+q {
+	quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* styles */
+
+/* ====== */
+
+/* headings */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: bold;
+}
+h1 {
+	font-size: 1.875em;
+	/*30 / 16*/
+	line-height: 1.6em;
+	/* 48 / 30*/
+	margin-top: 2em;
+}
+h2,
+h3 {
+	font-size: 1.3125em;
+	/*21 / 16*/
+	line-height: 1.15;
+	/*24 / 21*/
+	margin-top: 2.285714em;
+	/*48 / 21*/
+	margin-bottom: 1.15em;
+	/*24 / 21*/
+}
+h3 {
+	font-weight: normal;
+}
+h4 {
+	font-size: 1.125em;
+	/*18 / 16*/
+	margin-top: 2.67em;
+	/*48 / 18*/
+}
+h5,
+h6 {
+	font-size: 1em;
+	/*16*/
+}
+h1 {
+	border-bottom: 1px solid;
+	margin-bottom: 1.875em;
+	padding-bottom: 0.8125em;
+}
+/* links */
+
+a {
+	text-decoration: none;
+	color: #065588;
+}
+a:hover,
+a:active {
+	text-decoration: underline;
+}
+/* block spacing */
+
+p,
+blockquote,
+.md-fences {
+	margin-bottom: 1.5em;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-bottom: 1.5em;
+}
+/* blockquote */
+
+blockquote {
+	font-style: italic;
+	border-left: 5px solid;
+	margin-left: 2em;
+	padding-left: 1em;
+}
+/* lists */
+
+ul,
+ol {
+	margin: 0 0 1.5em 1.5em;
+}
+/* tables */
+.md-meta,.md-before, .md-after {
+	color:#999;
+}
+
+table {
+	margin-bottom: 1.5em;
+	/*24 / 16*/
+	font-size: 1em;
+	/* width: 100%; */
+}
+thead th,
+tfoot th {
+	padding: .25em .25em .25em .4em;
+	text-transform: uppercase;
+}
+th {
+	text-align: left;
+}
+td {
+	vertical-align: top;
+	padding: .25em .25em .25em .4em;
+}
+
+code,
+.md-fences {
+	background-color: #dadada;
+}
+
+code {
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.md-fences {
+	margin-left: 2em;
+	margin-bottom: 3em;
+	padding-left: 1ch;
+	padding-right: 1ch;
+}
+
+pre,
+code,
+tt {
+	font-size: .875em;
+	line-height: 1.714285em;
+}
+/* some fixes */
+
+h1 {
+	line-height: 1.3em;
+	font-weight: normal;
+	margin-bottom: 0.5em;
+}
+
+p + ul,
+p + ol{
+	margin-top: .5em;
+}
+
+h3 + ul,
+h4 + ul,
+h5 + ul,
+h6 + ul,
+h3 + ol,
+h4 + ol,
+h5 + ol,
+h6 + ol {
+	margin-top: .5em;
+}
+
+li > ul,
+li > ol {
+	margin-top: inherit;
+	margin-bottom: 0;
+}
+
+li ol>li {
+	list-style-type: lower-alpha;
+}
+
+li li ol>li{
+	list-style-type: lower-roman;
+}
+
+h2,
+h3 {
+	margin-bottom: .75em;
+}
+hr {
+	border-top: none;
+	border-right: none;
+	border-bottom: 1px solid;
+	border-left: none;
+}
+h1 {
+	border-color: #c5c5c5;
+}
+blockquote {
+	border-color: #bababa;
+	color: #656565;
+}
+
+blockquote ul,
+blockquote ol {
+	margin-left:0;
+}
+
+.ty-table-edit {
+	background-color: transparent;
+}
+thead {
+	background-color: #dadada;
+}
+tr:nth-child(even) {
+	background: #e8e7e7;
+}
+hr {
+	border-color: #c5c5c5;
+}
+.task-list{
+	padding-left: 1rem;
+}
+
+.md-task-list-item {
+	padding-left: 1.5rem;
+	list-style-type: none;
+}
+
+.md-task-list-item > input:before {
+	content: '\221A';
+	display: inline-block;
+	width: 1.25rem;
+  	height: 1.6rem;
+	vertical-align: middle;
+	text-align: center;
+	color: #ddd;
+	background-color: #F3F2EE;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before{
+	color: inherit;
+}
+
+#write pre.md-meta-block {
+	min-height: 1.875rem;
+	color: #555;
+	border: 0px;
+	background: transparent;
+	margin-top: -4px;
+	margin-left: 1em;
+	margin-top: 1em;
+}
+
+.md-image>.md-meta {
+	color: #9B5146;
+}
+
+.md-image>.md-meta{
+	font-family: Menlo, 'Ubuntu Mono', Consolas, 'Courier New', 'Microsoft Yahei', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', serif;
+}
+
+
+#write>h3.md-focus:before{
+	left: -1.5rem;
+	color:#999;
+	border-color:#999;
+}
+#write>h4.md-focus:before{
+	left: -1.5rem;
+	top: .25rem;
+	color:#999;
+	border-color:#999;
+}
+#write>h5.md-focus:before{
+	left: -1.5rem;
+	top: .0.3125rem;
+	color:#999;
+	border-color:#999;
+}
+#write>h6.md-focus:before{
+	left: -1.5rem;
+	top: 0.3125rem;
+	color:#999;
+	border-color:#999;
+}
+
+.md-toc:focus .md-toc-content{
+	margin-top: 19px;
+}
+
+.md-toc-content:empty:before{
+	color: #065588;
+}
+.md-toc-item {
+	color: #065588;
+}
+#write div.md-toc-tooltip {
+	background-color: #f3f2ee;
+}
+
+#typora-sidebar {
+	background-color: #f3f2ee;
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.375);
+  	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.375);
+}
+
+.pin-outline #typora-sidebar {
+	background: inherit;
+	box-shadow: none;
+	border-right: 1px dashed;
+}
+
+.pin-outline #typora-sidebar:hover .outline-title-wrapper {
+	border-left:1px dashed;
+}
+
+.outline-item:hover {
+  background-color: #dadada;
+  border-left: 28px solid #dadada;
+  border-right: 18px solid #dadada;
+}
+
+.typora-node .outline-item:hover {
+  	border-right: 28px solid #dadada;
+}
+
+.outline-expander:before {
+  content: "\f0da";
+  font-family: FontAwesome;
+  font-size:14px;
+  top: 1px;
+}
+
+.outline-expander:hover:before,
+.outline-item-open>.outline-item>.outline-expander:before {
+  content: "\f0d7";
+}
+
+.modal-content {
+	background-color: #f3f2ee;
+}
+
+.auto-suggest-container ul li {
+	list-style-type: none;
+}
+
+/** UI for electron */
+
+.megamenu-menu,
+#top-titlebar, #top-titlebar *,
+.megamenu-content {
+	background: #f3f2ee;
+	color: #1f0909;
+}
+
+.megamenu-menu-header {
+	border-bottom: 1px dashed #202B33;
+}
+
+.megamenu-menu {
+	box-shadow: none;
+	border-right: 1px dashed;
+}
+
+header, .context-menu, .megamenu-content, footer {
+	font-family: "PT Serif", 'Times New Roman', Times, serif;
+    color: #1f0909;
+}
+
+#megamenu-back-btn {
+	color: #1f0909;
+	border-color: #1f0909;
+}
+
+.megamenu-menu-header #megamenu-menu-header-title:before {
+	color: #1f0909;
+}
+
+.megamenu-menu-list li a:hover, .megamenu-menu-list li a.active {
+	color: inherit;
+	background-color: #e8e7df;
+}
+
+.long-btn:hover {
+	background-color: #e8e7df;
+}
+
+#recent-file-panel tbody tr:nth-child(2n-1) {
+    background-color: transparent !important;
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(2) {
+    color: inherit;
+}
+
+.megamenu-menu-panel .btn {
+	background-color: #D2D1D1;
+}
+
+.btn-default {
+	background-color: transparent;
+}
+
+.typora-sourceview-on #toggle-sourceview-btn,
+.ty-show-word-count #footer-word-count {
+	background: #c7c5c5;
+}
+
+#typora-quick-open {
+    background-color: inherit;
+}
+
+.md-diagram-panel {
+	margin-top: 8px;
+}
+
+.file-list-item-file-name {
+	font-weight: initial;
+}
+
+.file-list-item-summary {
+	opacity: 1;
+}
+
+.file-list-item {
+	color: #777;
+}
+
+.file-list-item.active {
+	background-color: inherit;
+	color: black;
+}
+
+.ty-side-sort-btn.active {
+	background-color: inherit;
+}
+
+.file-list-item.active .file-list-item-file-name  {
+	font-weight: bold;
+}
+
+.file-list-item{
+    opacity:1 !important;
+}
+
+.file-library-node.active>.file-node-background{
+	background-color: rgba(32, 43, 51, 0.63);
+	background-color: var(--active-file-bg-color);
+}
+
+.file-tree-node.active>.file-node-content{
+	color: white;
+	color: var(--active-file-text-color);
+}
+
+.md-task-list-item>input {
+	margin-left: -1.7em;
+	margin-top: calc(1rem - 12px);
+}
+
+input {
+	border: 1px solid #aaa;
+}
+
+.megamenu-menu-header #megamenu-menu-header-title,
+.megamenu-menu-header:hover, 
+.megamenu-menu-header:focus {
+	color: inherit;
+}
+
+.dropdown-menu .divider {
+	border-color: #e5e5e5;
+}
+
+/* https://github.com/typora/typora-issues/issues/2046 */
+.os-windows-7 strong,
+.os-windows-7 strong  {
+	font-weight: 760;
+}
+
+.ty-preferences .btn-default {
+	background: transparent;
+}
+
+.ty-preferences .window-header {
+	border-bottom: 1px dashed #202B33;
+	box-shadow: none;
+}
+
+#sidebar-loading-template, #sidebar-loading-template.file-list-item {
+	color: #777;
+}
+
+.searchpanel-search-option-btn.active {
+	background: #777;
+	color: white;
+}
+
+
+</style>
+</head>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><h1><a name="多视图学习--reviewed-by-xu-chang" class="md-header-anchor"></a><span>多视图学习  reviewed by Xu Chang</span></h1><p><font size="5" style="color: rgb(200,100,100)"><span>author: shushen data: 2020-9-12</span></font><span> </span></p><h2><a name="摘要部分abstract）" class="md-header-anchor"></a><span>摘要部分（abstract）</span></h2><h2><a name="1-多视图学习方法分类" class="md-header-anchor"></a><span>1. 多视图学习方法分类</span></h2><blockquote><p><span>协同训练: 交替训练，以最大程度地在两个不同的数据视图上达成共识</span></p></blockquote><blockquote><p><span>多核学习: 利用自然地对应于不同视图的内核，并线性或非线性地组合内核以提高学习性能</span></p></blockquote><blockquote><p><span>子空间学习: 通过假设输入视图是从该潜在子空间生成的，来获得多个视图共享的潜在子空间</span></p></blockquote><blockquote><p><span>共同特点：要利用共识原则或补充原则来确保多视图学习的成功</span></p></blockquote><h2><a name="2-多视图研究的方向和意义" class="md-header-anchor"></a><span>2. 多视图研究的方向和意义</span></h2><blockquote><p><span>如何利用多视图？如何构建多视图？如何评估多视图的价值？</span></p></blockquote><h2><a name="第一章-引言部分" class="md-header-anchor"></a><span>第一章 引言部分</span></h2><h3><a name="1-多视图提出的原因" class="md-header-anchor"></a><span>1. 多视图提出的原因</span></h3><blockquote><p><span>单视图学习方法下，将不同方面或者视角下的数据特征合并在一个视图中来适应学习器，但是</span></p><p><span>这种方式在样本数不够的前提下，容易造成过拟合（特征维度过高，样本数太少），于是提出</span></p><p><span>多视图来学习单一视图特有的统计特性并利用视图之间的冗余来提高学习性能；</span></p></blockquote><h3><a name="2-协同训练的发展和重要假设" class="md-header-anchor"></a><span>2. 协同训练的发展和重要假设</span></h3><blockquote><p><span>经典的协同训练算法：在两个视图上交替训练以使两个视图尽可能地在未标记的数据上达到共识</span></p><p><span>算法流程：</span></p><p><span>	</span><span>输入：标记数据集 L，未标记数据集 U</span></p><ul><li><span>用 L1训练视图 X1上的分类器 f1，用 L2训练视图 X2上的分类器 f2；</span></li><li><span>用 f1和 f2分别对未标记数据 U进行分类；</span></li><li><span>把 f1对 U的分类结果中，前 k个最置信的数据（正例  p个反例 n个）及其分类结果加入 L2；把 f2对 U的分类结果中，前 k个最置信的数据及其分类结果加入 L1；把这 2（p+n）个数据从 U中移除；</span></li><li><span>重复上述过程，直到 U为空集。</span></li></ul><p><span>输出：分类器 f1和 f2。</span></p></blockquote><blockquote><p><span>变体1：给未标记数据分配标签时使用可变概率的标签</span></p><p><span>变体2： 主动学习与协同训练相结合，即人工参与</span></p><p><span>变体3：视协同训练为组合标签在不同视图上的传播，再引入“分歧”，注：不是很理解</span></p><p><span>变体4 or 贡献：提出了共正则化规范，扩展了正则化使用的范围</span></p></blockquote><blockquote><p><span>三个重要假设：</span></p><ol start='' ><li><span>suﬃciency - each view is suﬃcient for classiﬁcation on its own（每个视图的特征都足够完成自己的分类任务）</span></li><li><span>compatibility- the target function of both views predict the same labels for co-occurring features with a high probability（两个视图的目标函数可以根据共同出现的特征在很大的可能性下预测出同一个标签）</span></li><li><span>conditional independence- views are conditionally independent given the label（在给定标签时，各个视图是条件独立的），注：不是很理解</span></li></ol></blockquote><h3><a name="3-多核学习" class="md-header-anchor"></a><span>3. 多核学习</span></h3><blockquote><p><span>多核学习中的多个内核自然地对应于不同的视图，并且线性或非线性地组合内核可以提高学习性能。</span></p><p><span>多核学习的发展状况没有清晰的脉络；</span></p></blockquote><h3><a name="4-子空间学习" class="md-header-anchor"></a><span>4. 子空间学习</span></h3><blockquote><p><span>先假设所有视图来自于一个共同的子空间，再根据相关性分析算法（CCA）算法从多个视图中得出各个视图的基向量，从而得到共享的潜在子空间；</span></p><p><span>当前研究方向和进展：</span></p><ol start='' ><li><span>不同视图之间的联系度量方式，例如欧式距离和马尔可夫网路，以及视图之间的互相预测</span></li><li><span>子空间学习用于聚类和回归</span></li><li><span>不止步于 CCA，还可以在引入标签后进行判别分析</span></li><li><span>共享子空间和私有子空间对于学习性能的提高</span></li></ol></blockquote><h3><a name="5-结论" class="md-header-anchor"></a><span>5. 结论</span></h3><blockquote><p><span>关于多视图学习的研究常常与机器学习领域的其他问题相关，比如主动学习、域自适应、Adaboost等；</span></p></blockquote><h2><a name="第二章-多视图学习的基本原理" class="md-header-anchor"></a><span>第二章 多视图学习的基本原理</span></h2><blockquote><p><span>多视图学习相比于单视图的关键是识别冗余视图，多视图丰富了数据信息，但是如果不能够适当地</span></p><p><span>处理冗余信息，则可能会降低学习性能。于是多视图的两个关键原则是：共识和互补。</span></p></blockquote><h3><a name="21-共识原则" class="md-header-anchor"></a><span>2.1 共识原则</span></h3><blockquote><p><span>如下不等式已经被证明：</span></p><p><img src="D:\Typora\img\共识原则1.JPG" referrerpolicy="no-referrer"></p><p><span>由不等式可知，两个独立假设不一致的概率为任意一个假设的错误率的上限, 可以通过最小化两个假设的不一致率来最小化单个假设的不一致率；</span></p><p><span>许多算法都利用了这一原则，比如协同训练算法是通过最小化带标记样本的误差和最大化无标记样本与带标记样本的一致性来实现最终的分类学习；而 “共（协同）正则化”概念也是体现了这一原则，公式如下：</span></p><p><img src="D:\Typora\img\共正则化公式.JPG" referrerpolicy="no-referrer" alt="共正则化"></p><p><span>其中的第一项描述了两个视图的不一致损失，第二项描述了预测结果在损失函数下的经验损失；</span></p><p><span>此外还有许多研究工作体现了这一原则；</span></p></blockquote><h3><a name="22-互补原则" class="md-header-anchor"></a><span>2.2 互补原则</span></h3><blockquote><p><span>互补原则指出，在多视图设置中，数据的每个视图可能包含一些其他视图不具备的知识;因此，可以使用多个视图来全面、准确地描述数据。在涉及多视图数据的机器学习问题中，可以利用多视图下的互补信息，利用互补原理来提高学习性能。</span></p><p><span>比如使用在某一视图上学习的分类器对未标记的数据进行标记，然后将这些新标记的数据加入另一个视图中进行下一次迭代的分类器训练，第二个视图共享了第一个视图的互补信息，这种共享也可以很容易实现相互。</span></p><p><span>比如对同一个学习器使用不同的配置可以看作是两个不同的视图，当两个学习器的差异率大于总的错误率时（不一致损失大于经验损失），这种协同学习可以改进学习器的性能（其原理与2.1节中的公式有关）。第一个学习器所标记出的样本如果对于第二个学习器有用，那么说明视图1包含了视图2所缺少的信息，这是一种互补。两个学习器将不断地交换互补信息来提高性能。</span></p></blockquote><p><span>		</span><span>通过诸多场景继续阐述了多视图学习以及两个原则在多视图学习中的体现。</span></p><h2><a name="第三章-视图生成" class="md-header-anchor"></a><span>第三章 视图生成</span></h2><p>&nbsp;</p><blockquote><p><span>多视图学习的重点是获取冗余视图，这也是与单视图学习的主要区别。多视图生成的目的不仅是获取不同属性的视图，还涉及到如何保证视图充分表示数据，满足学习假设的问题。</span></p><p><span>接下来讨论了如何生成有效视图</span></p></blockquote><h3><a name="31-视图构造" class="md-header-anchor"></a><span>3.1 视图构造</span></h3><blockquote><p><span>视图构造的必要性：在无法轻松获取多视图数据的时候，无法直接进行多视图学习，所以第一步需要从单一视图数据来构造多视图数据。</span></p></blockquote><blockquote><p><span>不同的视图构造对应于不同特征集的划分，即传统的机器学习中特征选择的任务，但区别是传统的机器学习中的特征选择是选择出一个单一的特征集合，而此处的特征集划分目的是划分出多个不相交的子集，其中最传统的方法是将单一视图对应的特征集合随机划分为不同的子集。但是这一项工作很复杂，</span><strong><span>其划分效果依赖于分类器的选择和数据域的特点。</span></strong></p></blockquote><h4><a name="311-多视图构造的部分方法" class="md-header-anchor"></a><span>3.1.1 多视图构造的部分方法</span></h4><blockquote><p><span>Bootstrapping算法: 对总体样本进行多次重复采样（有放回）来抽取足够代表母体的新样本，然后对新样本计算母体样本的近似分布；</span></p><p><span>随机子空间算法（RSM）：融合了 Bootstrapping算法的优点，但是其随机过程是在特征空间中进行，每一次随机过程都在所有的特征空间中选择少量的维数（如果是2），对于n维特征空间将会有 2^n个不同的视图；采用 SVM将多个采样子空间组合在一起以构造强大的学习器是一个可选的方法（此处相似于多分类SVM的基本思想，构造多个分类器）。</span></p></blockquote><blockquote><p><span>example1: 高光谱图像数据的视图生成 </span><a href='https://ieeexplore.ieee.org/document/6051478/'><span>文章地址</span></a></p><p><span>example2: 使用不同数量的单词组成术语以构造文本文档的不同视图（表示）</span><a href='https://www.researchgate.net/publication/221311620_Multi-view_Semi-supervised_Learning_An_Approach_to_Obtain_Different_Views_from_Text_Datasets'><span>文章地址</span></a></p><p><span>example3:  新的特征分解算法（PMC， Pseudo Multi-view Co-training），将特征空间自动划分为两个互斥子集，优化器可以描述为：</span></p><p><span>	</span><img src="D:\Typora\img\pmc算法优化器.JPG" referrerpolicy="no-referrer" alt="PMC算法的优化器"></p><p><span>然后通过如下约束来划分不同的视图：</span></p><p><img src="D:\Typora\img\视图约束.JPG" referrerpolicy="no-referrer" alt="视图约束"></p><p><span>对于维度 i，两个分类器中至少有一个将其置为0；每一次迭代中优化器都需要去寻找一个最优的特征空间分割；</span></p></blockquote><blockquote><p><strong><span>核函数：对于非线性可分的问题，常常采用低维特征空间映射到线性可分高维特征空间，然后在高维特征空间中实现分类和回归等任务，但是高维空间中的维度灾难导致了向量之间的计算很复杂，甚至不可计算，而一般我们完成任务时只需要高维空间中两个向量之间的内积（标量），于是假设一个函数，其输入样本中任意两个低维特征空间向量后的输出与两个向量映射到高维空间中做内积的结果相等，那么这个函数即为核函数。</span></strong></p><p><strong><span>当有了这个核函数之后，我们不再需要显示的低维空间到高维空间的映射，核函数隐式地完成了这一任务，所以核函数设计的好坏，直接关系到空间映射的合理性以及可能性， 直接影响完成任务的效果。</span></strong></p></blockquote><h4><a name="312-多视图构造方法总结" class="md-header-anchor"></a><span>3.1.2 多视图构造方法总结</span></h4><blockquote><p><span>方法一：直接通过随即方法从源数据构造多个视图</span></p><p><span>方法二：分割原始单视图得到多视图划分，例如使用不同核函数</span></p><p><span>方法三：对特征空间进行子集的划分得到特征空间的多视图</span></p></blockquote><h3><a name="32-多视图的评估" class="md-header-anchor"></a><span>3.2 多视图的评估</span></h3><p><span>		</span><span>如何分析和评价生成的多视图，也是视图生成的任务之一：分析多视图之间的关系，分析由于违反多视图假设或者视图噪声带来的问题。</span></p><h4><a name="321--违反多视图假设或者视图噪声带来的问题" class="md-header-anchor"></a><span>3.2.1  违反多视图假设或者视图噪声带来的问题</span></h4><blockquote><ol start='' ><li><p><span>view suﬃciency在实践中通常不成立，比如视频帧检测中低维的直方图特征无法区分一架飞机和一只鹰；</span></p><p><span>现有的解决办法：先使用带标记数据初始化两个分类器，再使用初始化分类器标记未标记的数据，再通过这一部分刚标记的数据训练两个额外的分类器，之后将四个分类器进行加权组合（在验证集上测试）来检验从刚刚标记的数据上分类器可以获得多少好处，如果刚刚得到的两个新的分类器噪声过大而无法使用，则回到第一步，</span><a href='https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.69.5704&amp;rep=rep1&amp;type=pdf'><span>相关文献</span></a></p></li></ol></blockquote><blockquote><ol start='2' ><li><p><span>视图分歧（视图噪声）：由于噪声的存在，每个样本在同一个视图下，并不是一直属于同一个class，特别是当样本在前景和背景中混淆时；</span></p><p><span>通过定义一个条件视图熵来衡量样本在视图中的不一致性，其变量之一是视图，变量之二是条件作用的发生，变量之三是样本；比如当条件作用发生在背景这种容易产生噪声的环境中时，熵增大；</span></p><p><span>在协同训练中通过给熵设计阈值，来舍弃在给定视图中噪声太大（熵太大）的样本，以提高学习性能；</span></p></li></ol></blockquote><blockquote><ol start='3' ><li><p><span>多核噪声：在多内核学习中，不同的内核可能使用来自不同表示的输入，可能来自一系列的模式或来源。这些表示可能具有与不同内核对应的不同的相似性度量，可以看作是数据的不同视图。在这种情况下，组合内核是组合多个信息源的一种可能方式;但是在现实生活中，</span><strong><span>信号源可能会被不同的噪声所破坏，所以当一些核是有噪声或不相关时，在学习过程中需要优化核权值。</span></strong></p><p><strong><span>对多核进行加权已经被证明可以较为有效地抑制简单噪声，但是无法处理异方差噪声、数据缺失等问题。</span></strong></p><p><span>其他解决办法啊：每个视图上学习局部加权</span><a href='https://www2.eecs.berkeley.edu/Pubs/TechRpts/2009/EECS-2009-96.pdf'><span>相关论文</span></a></p></li></ol></blockquote><h4><a name="322-两种置信度的提出" class="md-header-anchor"></a><span>3.2.2 两种置信度的提出</span></h4><blockquote><p><span>视图间置信度和视图内置信度的提出：其对应于视图充分性和视图间依赖性的问题</span></p><p><span>考虑到样本 X与 M个视图相关，观察数据分别表示为 X1，··，XM;根据互信息定义，X的视图间置信度（视图依赖性）定义为</span></p><p><img src="D:\Typora\img\视图间置信度.JPG" referrerpolicy="no-referrer" alt="视图间置信度"></p><p><span>其中 I 描述了两个视图（ i 和 j ）间交互信息的多少；交互信息越少，视图间的置信度越高；</span></p><p><span>X的视图内置信度（视图充分性）定义为：</span></p><p><img src="D:\Typora\img\视图内置信度.JPG" referrerpolicy="no-referrer" alt="视图内置信度"></p><p><span>F 衡量样本 X在 L（带标签数据）和 U（未标记数据）中的观察的一致性，S为相似矩阵，遍历所有的视图，计算总的不一致性，其值越高，视图内置信度越低；</span></p></blockquote><h4><a name="323-典型相关分析的应用" class="md-header-anchor"></a><span>3.2.3 典型相关分析的应用</span></h4><blockquote><p><span>典型相关分析（CCA）：视图之间的相关性是基于子空间的多视图学习方法的一个重要因素，典型相关分析(CCA)来描述两个视图之间的线性关系，目的是计算两个不同视图的低维数共享嵌入变量，使两个视图之间的相关性在低维空间中最大化，但是 CCA只能描述低维空间下的线性系统。</span></p><p><span>kernel CCA：</span></p><p><span>	</span><span>在两个视图之间寻找两个非线性相关的投影，来使相关系数最大，如下图，X 和 Y分别是两个视图，Wx和 Wy是识别出的投影向量，然后通过如下方式寻找最大化的协方差系数：</span></p><p><img src="D:\Typora\img\KCCA.JPG" referrerpolicy="no-referrer" alt="KCCA"></p><p><span>最后我们将会得到一组从大到小的协方差系数，然后根据协方差系数和通过不同的测度方式计算视图的相关性大小</span></p></blockquote><h2><a name="第四章-多视图组合方法" class="md-header-anchor"></a><span>第四章 多视图组合方法</span></h2><blockquote><p><span>组合多个视图的一种传统方法是将所有多个视图连接成一个视图，以适应单一视图学习设置。但是，这种连接会导致对一个小的训练样本进行过拟合，并且在物理上没有意义，因为每个视图都有一个特定的统计属性。因此，采用多视图结合的先进方法来实现相对于单视图学习算法在学习性能上的提高。</span></p></blockquote><h3><a name="41-经典的协同训练概要" class="md-header-anchor"></a><span>4.1 经典的协同训练概要</span></h3><blockquote><p><span>不再赘述,补充一个图</span></p><p><img src="D:\Typora\img\协同训练.JPG" referrerpolicy="no-referrer" alt="co_training"></p></blockquote><h3><a name="42--协同训练如何组合多视图" class="md-header-anchor"></a><span>4.2  协同训练如何组合多视图</span></h3><blockquote><p><span>多视图学习主要应用半监督学习，将未标记数据作为验证集和将验证过程作为视图之间交换信息的重要步骤，但是对于有监督学习和无监督学习，多视图的组合方式会有所差别。</span></p></blockquote><blockquote><ol start='' ><li><p><span>在无监督学习中没有验证集可以用，于是对于多个视图对应分类器的训练以及多个视图的联合训练都在同一个数据集上进行；</span></p><p><span>多视图学习应用到无监督学习的典型-多视图数据的光谱聚类算法</span><a href='https://dl.acm.org/doi/10.5555/3104482.3104532'><span>多视图光谱聚类</span></a></p></li></ol></blockquote><blockquote><ol start='2' ><li><span>有监督学习中的隐式验证集引入：引入函数来表示每个样本在分类器中的预测结果与每个视图的条件独立性，这种方式实际上隐式地连接了所有的视图，起到了验证集的作用（个人认为这种验证方式较弱）。</span></li></ol></blockquote><h3><a name="43-多核学习概要" class="md-header-anchor"></a><span>4.3 多核学习概要</span></h3><blockquote><p><span>不同的内核可能对应不同的相似度量方式或来自不同表示(可能来自许多源或方式)的输入，因此组合内核是集成多个信息源并获取更好学习性能的一种方式，补充一个图：</span></p><p><img src="D:\Typora\img\多核学习.JPG" referrerpolicy="no-referrer" alt="多核学习"></p></blockquote><h3><a name="44-多核学习如何组合多视图" class="md-header-anchor"></a><span>4.4 多核学习如何组合多视图</span></h3><blockquote><ol start='' ><li><p><strong><span>线性组合方法</span></strong></p><p><span>直接线性组合和加权线性组合：</span></p><p><img src="D:\Typora\img\多核的线性组合.JPG" referrerpolicy="no-referrer" alt="线性组合"></p><p><strong><span>加权线性组合根据对权重施加限制的方式有许多版本</span></strong></p></li><li><p><strong><span>非线性组合方法</span></strong></p><p><span>基核的乘积或其他产生方式，比如指数和幂：</span></p><p><img src="D:\Typora\img\非线性1.JPG" referrerpolicy="no-referrer" alt="非线性组合1"></p><p><span>基于核回归和核的多项式组合的非线性核组合方法：效果不好</span></p></li></ol></blockquote><h3><a name="45-子空间学习与组合多视图" class="md-header-anchor"></a><span>4.5 子空间学习与组合多视图</span></h3><blockquote><p><span>基于子空间学习的方法的目的是通过假设输入视图是从这个潜在子空间生成的来获得一个被多个视图共享的潜在子空间; 典型相关分析 (CCA)可以看作是 PCA的多视图版本。</span></p><p><span>补充一张 基于CCA的多视图学习图</span></p><p><img src="D:\Typora\img\CCA based mutli view.JPG" alt="CCA 多视图" style="zoom:50%;" /></p><p><span>通过最大化子空间中两个视图之间的相关性，CCA在每个视图上输出一个最优投影;然而，由于CCA构造的子空间是线性的，因此不可能直接将其应用于许多具有非线性的真实世界数据集，由此引入 KCCA(Kernel CCA),可以简单地理解为先通过核函数将低维特征映射到线性可分的高维空间，再施行 CCA。</span></p><p><span>列举了几篇基于子空间的多视图学习的典型文章，其组合多视图的方法不尽相同</span></p></blockquote><h3><a name="46-组合多视图方法的总结分三类算法" class="md-header-anchor"></a><span>4.6 组合多视图方法的总结(分三类算法)</span></h3><blockquote><ol start='' ><li><span>联合训练式算法通常根据不同的观点训练不同的学习者，然后迫使他们在不同的观点之间保持一致。因此，这种方法可以看作是多种视图的后组合，因为在训练基础学习者时，视图是未组合的</span></li></ol></blockquote><blockquote><ol start='2' ><li><span>多核学习方法中是首先根据单视图来单独计算核，然后通过基于核的组合来组合多视图的，这类方式是在训练之前或者训练中组合多视图</span></li></ol></blockquote><blockquote><ol start='3' ><li><span>基于子空间学习的方法是通过假设输入视图是从一个潜在视图生成来获得一个合适的子空间。这种方法可以看作是多个视图的</span><strong><span>先验组合</span></strong><span>，因为多个视图是以</span><strong><span>共享子空间假设</span></strong><span>为前提的</span></li></ol></blockquote><h2><a name="第五章-协同训练风格算法" class="md-header-anchor"></a><span>第五章 协同训练风格算法</span></h2><h3><a name="51-协同训练的假设" class="md-header-anchor"></a><span>5.1 协同训练的假设</span></h3><blockquote><p><span>协同训练划分两个不同的视图：</span></p><ol start='' ><li><span>充足性：每个视图本身就足以进行分类，可以独立完成分类工作（实际情况没那么好，所以称作假设）</span></li><li><span>兼容性：两个视图的目标函数都极可能对共同出现的特征给出一样的预测标签</span></li><li><span>条件独立性：在进行预测时，各个视图之间是条件独立的（实际情况中不能满足，使用替代方案）</span></li></ol></blockquote><blockquote><p><span>条件独立假设 -------&gt;弱依赖假设-------&gt;扩展假设--------&gt;多样性（差异性）假设</span></p><p><span>上述是对条件独立性假设逐步放宽，并且每一种假设都得到了理论和实践证明，目前使用最多的是最后一种，假设：</span></p><p><span>只要协同训练的两个学习器之间的差异性大于其单独的错误率，那么随着协同训练的进行，最终得到的单视图相比于单视图学习器就会有改善，这种改善是通过不同视图下的分类器为对方标注越来越多的样本（交换信息）来实现的。</span></p></blockquote><h3><a name="52-经典协同训练介绍" class="md-header-anchor"></a><span>5.2 经典协同训练介绍</span></h3><blockquote><p><span>较为简单，且已经在第一章和第四章做过介绍，不再赘述</span></p></blockquote><h3><a name="53-协同期望最大化算法co-em）" class="md-header-anchor"></a><span>5.3 协同期望最大化算法（Co-EM）</span></h3><blockquote><p><span>协同训练在条件独立假设成立的前提下，每一个分类器为对方增加的样本等同于随机样本，其将会为对方视图增加一定信息量，分类器的学习是前进的；如果条件假设不成立或者更弱了，那么增加的信息量会更少，协同训练可能会失败。</span></p><p><span>Co-EM的思想是，分类器不再为未标记的数据给出标签，而是给出下一次迭代需要使用的概率标签，最终的分类器也输出类的概率。</span></p></blockquote><h3><a name="54-协同正则化co-regularization）" class="md-header-anchor"></a><span>5.4 协同正则化（Co-regularization）</span></h3><blockquote><p><span>最近一些文章和研究工作将协同训练以更加规范的形式描述为一个协同正则化的过程，其最终的优化器描述如下：</span></p><p><img src="D:\Typora\img\协同正则化.JPG" referrerpolicy="no-referrer" alt="Co-regularization"></p><p><span>其中 H1和 H2为两个视图对应的希尔伯特空间，f1和 f2为待求解的预测函数，U为未标记样本，L未标记样本，式子第一项和第二项通过再生希尔伯特空间的二范数来度量复杂度（这里不太理解，希尔伯特空间相关的不太懂）；第三项描述了分类器对未标记样本的一致性误差，第三项描述了分类器对于标记样本在损失函数为 V时的经验误差；其他字母为可以调整的权重值；</span></p></blockquote><h3><a name="55-协同回归co-regression）" class="md-header-anchor"></a><span>5.5 协同回归（Co-regression）</span></h3><blockquote><p><span>协同训练风格的半监督回归算法 1：使用了两个k近邻(k-nearest neighbor, kNN)回归元，在学习过程中，每一个回归元对另一个未标记的数据进行标记，通过对未标记样本进行标记对已标记样本的影响来估计这种标记的置信度。</span></p><p><span>另一种协同回归算法，其目标函数如下：</span></p><p><img src="D:\Typora\img\协同回归.JPG" referrerpolicy="no-referrer" alt="协同回归"></p><p><span>其中共有 M个视图，在希尔伯特空间中完成复杂性的度量（第一项的第二个子项）；第一项的第一个子项为对标记样本的预测值与真实值之间的损失；第二项描述了两两视图对于未标记数据的看法一致性损失；</span></p></blockquote><h3><a name="56-协同聚类co-clustering）" class="md-header-anchor"></a><span>5.6 协同聚类（Co-clustering）</span></h3><blockquote><p><span>协同训练最初是为半监督学习设计的，但是其也可以用于无监督学习问题（聚类）</span></p><p><span>主流的聚类算法都可以设计出协同训练版本：基本思想是在一个视图下运行经典的聚类算法然后将其结果信息交还给另一个视图，再于另一个视图下运行经典的聚类算法，以此迭代。</span></p><p><span>简要介绍了Kumar和Daum的光谱聚类算法（前面已经出现过多次，这篇文章或许应该看一下）</span></p></blockquote><h3><a name="57-基于图的协同训练-graph-based-co-training）" class="md-header-anchor"></a><span>5.7 基于图的协同训练（ Graph-based Co-training）</span></h3><blockquote><p><span>主要讲了这篇文章的算法结构-&gt; </span><a href='http://people.csail.mit.edu/romer/papers/BayesCotrain_NIPS07.pdf'><span>基于图的协同训练</span></a></p></blockquote><h3><a name="58-多学习器算法multi-learner-algorithms）" class="md-header-anchor"></a><span>5.8 多学习器算法（Multi-learner Algorithms）</span></h3><blockquote><p><span>第一种：利用未标记数据来提高标准监督学习算法的性能</span></p><p><span>	</span><span>这种算法不要求“条件独立性”，只需要假设可以将样本空间划分为一组等价类；</span></p><p><span>	</span><span>这里等价类没有说明等价关系，在没看文章的前提下理解为一个等价类中的子集可以对未标记样本产生同样的预测结果；</span></p><p><span>	</span><span>就本叙述来看，这种算法本质上是将经典协同训练里的正负样本的加入，改造为适应于多分类的“等价类划分”和“等价类”标记，即对于未标记样本的标记不是正负标记，而是类别标记，隐式地舍弃了冗余视图？</span></p></blockquote><blockquote><p><span>第二种：三训练协同训练算法</span></p><p><span>这种算法从原始的标记数据中生成三个分类器，然后使用未标记数据对分类器进行改进。当两个分类器对于一个未标记数据达成一致的时候，才对该数据进行标记。这种三训练算法不需要视图的充足性和冗余视图</span></p></blockquote><blockquote><p><span>第三种: 多训练 SVM (multi-training SVM)</span></p><p><span>首先，利用随机子空间法可以从原始输入特征中获得一系列特征子集，即数据的多个视图。然后可以在这些生成的视图上学习多个分类器，并可以在半监督的相关性反馈设置中互相训练。最后，利用多数投票规则生成最优分类器</span></p><p><span>不看其文章的话，暂时没看出来其SVM体现在哪里。</span></p></blockquote><h2><a name="第六章-多核学习" class="md-header-anchor"></a><span>第六章 多核学习</span></h2><blockquote><p><span>多核学习中的内核（不同特征空间映射方式）自然对应于不同内核，即对应于不同视图，对于基本内核的组合可以提高学习性能，因此多核学习可以看作是多视图学习的一部分。</span></p></blockquote><h3><a name="61-boosting-methods" class="md-header-anchor"></a><span>6.1 Boosting Methods</span></h3><blockquote><p><span>Ensemble method: “集成”多种机器学习方法</span></p><p><span>Boosting Method：先使用一种简单方法得到一个结果，再使用其他方法来重点处理错误数据以“提升”效果</span></p></blockquote><blockquote><p><span>多重加性回归核算法 ：the Multiple Additive Regression Kernels (MARK)</span></p><p><span>考虑一个由大量的核函数和参数组成的大型核矩阵库，然后将核函数进行线性组合，每一个核函数可以是任意类型，比如核函数 K 可以是 RBF核函数的不同参数版本，其决策函数如下：</span></p><p><img src="D:\Typora\img\多重加性回归核.JPG" referrerpolicy="no-referrer" alt="多重加性回归核"></p><p><span>其中 i 为样本下标，k为核下标， d为加权因子；</span></p><p><span>与集成学习类似，这种方法将不同的核视为不同的弱学习器，由此组成一个强学习器，</span></p><p><span>而在多视图学习中这种动态生成的弱学习器又可以视为不同的视图；</span></p></blockquote><h3><a name="62-半正定规划sdp）" class="md-header-anchor"></a><span>6.2 半正定规划（SDP）</span></h3><blockquote><p><span>一般形式的半正定规划如下：</span></p><p><img src="D:\Typora\img\SDP.JPG" referrerpolicy="no-referrer" alt="SDP"></p><p><span>其中 c为给定的数据向量，Fm为给定的数据矩阵，两个约束为线性矩阵不等式和线性等式；</span></p><p><span>当数据的所有标签都是已知的，从数据中学习一个优化核矩阵的任务就是找到与标签集合 y最大对齐的核矩阵 K，那么这个问题可以表述为：</span></p><p><img src="D:\Typora\img\mkl_SDP.JPG" referrerpolicy="no-referrer" alt="mkl_SDP"></p><p><span>其中 y是给定的样本集合，矩阵 A的 tr(A)小于 1，其他约束与经典的SDP类似；目标函数为核矩阵完成分类器后与标签的误差最小；</span></p><p><span>当部分标签未知时的情况较复杂，一点没看懂；</span></p></blockquote><h3><a name="64-半正定规划sdp）半无线线性规划silp）简单多核学习simplemkl" class="md-header-anchor"></a><span>6.4 半正定规划（SDP）、半无线线性规划（SILP）、简单多核学习(SimpleMKL)</span></h3><blockquote><p><span>这一类方法都属于将最优核的寻找问题转化为一个线性规划或者二线规划问题，其约束函数与学习器性能相关</span></p></blockquote><h3><a name="65-group-lasso方法" class="md-header-anchor"></a><span>6.5 Group-LASSO方法</span></h3><blockquote><p><span>LASSO:最小绝对值收敛和选择算法，是一种回归算法，本质上是线性回归的 L1正则化，即为损失函数后面添加一个L1正则化项；</span></p><p><span>Group-LASSO：特征分组之后的 LASSO（Group），同时给目标函数添加每一组的 L2范数来惩罚，保证组间稀疏性；</span></p></blockquote><blockquote><p><span>Composite Kernel Learning (CKL): 是受Group-LASSO启发，考虑了核之间的群体结构 （Group）后对 MKL进行了改进，即为Simple MKL的群体结构版本；</span></p><p><span>之后有研究将 L2范数推广到 p范数，也有研究将对组的惩罚项采用对数惩罚；</span></p></blockquote><h3><a name="66-多核学习的边界" class="md-header-anchor"></a><span>6.6 多核学习的边界</span></h3><blockquote><p><span>已经被证明：当选择的核是来自多个基本核的凸组合时，分类器的误差是有边界的，并且边界收敛；</span></p><p><span>有研究工作表明：边界复杂度越大以及核数越多，那么误差边界也会增大；</span></p><p><span>有研究工作表明：误差的下界将会随着内核族的伪维数的增加而增大；</span></p><p><span>还有诸多情况下的误差下界证明已经被研究过；</span></p></blockquote><h2><a name="第七章-子空间学习" class="md-header-anchor"></a><span>第七章 子空间学习</span></h2><blockquote><p><span>基于子空间学习的方法的目的是通过假设输入视图是从该子空间生成的，从而获得一个被多个视图共享的潜在子空间。除了典型相关分析(CCA)之外，还有其他更有效的构建子空间的方法。</span></p></blockquote><h3><a name="71-典型相关性分析cca）" class="md-header-anchor"></a><span>7.1 典型相关性分析（CCA）</span></h3><blockquote><p><span>典型相关分析(CCA)是一种建模两组(或更多)变量之间关系的技术，它已成功地应用于处理多视图数据的各种学习问题。</span></p></blockquote><h4><a name="711-cca回顾" class="md-header-anchor"></a><span>7.1.1 CCA回顾</span></h4><blockquote><p><span>关于 CCA算法计算相关性最大的投影向量的原理介绍</span></p></blockquote><h4><a name="712-kernel-cca" class="md-header-anchor"></a><span>7.1.2 Kernel CCA</span></h4><blockquote><p><span>典型相关分析(CCA)是一种线性特征提取算法，但对于许多呈现非线性的真实世界数据集，线性投影不可能捕捉到数据的属性。核方法通过将数据映射到高维空间，然后在该空间中应用线性方法，KCCA提供了一种处理非线性的方法。</span></p></blockquote><p>&nbsp;</p></div>
+</body>
+</html>

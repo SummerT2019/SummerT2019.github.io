@@ -1,0 +1,751 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>multi-view_paper_from_IEEExplore_dblp</title><link href='https://fonts.loli.net/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic-ext,cyrillic,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+  .typora-export h1::after, .typora-export h2::after, .typora-export h3::after, .typora-export h4::after, .typora-export h5::after, .typora-export h6::after { content: ""; display: block; height: 100px; margin-bottom: -100px; }
+}
+
+
+/* meyer reset -- http://meyerweb.com/eric/tools/css/reset/ , v2.0 | 20110126 | License: none (public domain) */
+
+@include-when-export url(https://fonts.loli.net/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic-ext,cyrillic,latin-ext);
+
+/* =========== */
+
+/* pt-serif-regular - latin */
+/* pt-serif-italic - latin */
+/* pt-serif-700 - latin */
+/* pt-serif-700italic - latin */
+:root {
+	--active-file-bg-color: #dadada;
+	--active-file-bg-color: rgba(32, 43, 51, 0.63);
+	--active-file-text-color: white;
+	--bg-color: #f3f2ee;
+	--text-color: #1f0909;
+	--control-text-color: #444;
+	--rawblock-edit-panel-bd: #e5e5e5;
+
+	--select-text-bg-color: rgba(32, 43, 51, 0.63);
+  --select-text-font-color: white;
+}
+
+pre {
+	--select-text-bg-color: #36284e;
+	--select-text-font-color: #fff;
+}
+
+html {
+	font-size: 16px;
+}
+
+html, body {
+	background-color: #f3f2ee;
+	font-family: "PT Serif", 'Times New Roman', Times, serif;
+	color: #1f0909;
+	line-height: 1.5em;
+}
+
+/*#write {
+	overflow-x: auto;
+    max-width: initial;
+	padding-left: calc(50% - 17em);
+    padding-right: calc(50% - 17em);
+}
+
+@media (max-width: 36em) {
+ 	#write {
+ 		padding-left: 1em;
+    	padding-right: 1em;
+ 	}
+}*/
+
+#write {
+	max-width: 40em;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+			max-width: 914px;
+	}
+}
+
+ol li {
+	list-style-type: decimal;
+	list-style-position: outside;
+}
+ul li {
+	list-style-type: disc;
+	list-style-position: outside;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+blockquote,
+q {
+	quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* styles */
+
+/* ====== */
+
+/* headings */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: bold;
+}
+h1 {
+	font-size: 1.875em;
+	/*30 / 16*/
+	line-height: 1.6em;
+	/* 48 / 30*/
+	margin-top: 2em;
+}
+h2,
+h3 {
+	font-size: 1.3125em;
+	/*21 / 16*/
+	line-height: 1.15;
+	/*24 / 21*/
+	margin-top: 2.285714em;
+	/*48 / 21*/
+	margin-bottom: 1.15em;
+	/*24 / 21*/
+}
+h3 {
+	font-weight: normal;
+}
+h4 {
+	font-size: 1.125em;
+	/*18 / 16*/
+	margin-top: 2.67em;
+	/*48 / 18*/
+}
+h5,
+h6 {
+	font-size: 1em;
+	/*16*/
+}
+h1 {
+	border-bottom: 1px solid;
+	margin-bottom: 1.875em;
+	padding-bottom: 0.8125em;
+}
+/* links */
+
+a {
+	text-decoration: none;
+	color: #065588;
+}
+a:hover,
+a:active {
+	text-decoration: underline;
+}
+/* block spacing */
+
+p,
+blockquote,
+.md-fences {
+	margin-bottom: 1.5em;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-bottom: 1.5em;
+}
+/* blockquote */
+
+blockquote {
+	font-style: italic;
+	border-left: 5px solid;
+	margin-left: 2em;
+	padding-left: 1em;
+}
+/* lists */
+
+ul,
+ol {
+	margin: 0 0 1.5em 1.5em;
+}
+/* tables */
+.md-meta,.md-before, .md-after {
+	color:#999;
+}
+
+table {
+	margin-bottom: 1.5em;
+	/*24 / 16*/
+	font-size: 1em;
+	/* width: 100%; */
+}
+thead th,
+tfoot th {
+	padding: .25em .25em .25em .4em;
+	text-transform: uppercase;
+}
+th {
+	text-align: left;
+}
+td {
+	vertical-align: top;
+	padding: .25em .25em .25em .4em;
+}
+
+code,
+.md-fences {
+	background-color: #dadada;
+}
+
+code {
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.md-fences {
+	margin-left: 2em;
+	margin-bottom: 3em;
+	padding-left: 1ch;
+	padding-right: 1ch;
+}
+
+pre,
+code,
+tt {
+	font-size: .875em;
+	line-height: 1.714285em;
+}
+/* some fixes */
+
+h1 {
+	line-height: 1.3em;
+	font-weight: normal;
+	margin-bottom: 0.5em;
+}
+
+p + ul,
+p + ol{
+	margin-top: .5em;
+}
+
+h3 + ul,
+h4 + ul,
+h5 + ul,
+h6 + ul,
+h3 + ol,
+h4 + ol,
+h5 + ol,
+h6 + ol {
+	margin-top: .5em;
+}
+
+li > ul,
+li > ol {
+	margin-top: inherit;
+	margin-bottom: 0;
+}
+
+li ol>li {
+	list-style-type: lower-alpha;
+}
+
+li li ol>li{
+	list-style-type: lower-roman;
+}
+
+h2,
+h3 {
+	margin-bottom: .75em;
+}
+hr {
+	border-top: none;
+	border-right: none;
+	border-bottom: 1px solid;
+	border-left: none;
+}
+h1 {
+	border-color: #c5c5c5;
+}
+blockquote {
+	border-color: #bababa;
+	color: #656565;
+}
+
+blockquote ul,
+blockquote ol {
+	margin-left:0;
+}
+
+.ty-table-edit {
+	background-color: transparent;
+}
+thead {
+	background-color: #dadada;
+}
+tr:nth-child(even) {
+	background: #e8e7e7;
+}
+hr {
+	border-color: #c5c5c5;
+}
+.task-list{
+	padding-left: 1rem;
+}
+
+.md-task-list-item {
+	padding-left: 1.5rem;
+	list-style-type: none;
+}
+
+.md-task-list-item > input:before {
+	content: '\221A';
+	display: inline-block;
+	width: 1.25rem;
+  	height: 1.6rem;
+	vertical-align: middle;
+	text-align: center;
+	color: #ddd;
+	background-color: #F3F2EE;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before{
+	color: inherit;
+}
+
+#write pre.md-meta-block {
+	min-height: 1.875rem;
+	color: #555;
+	border: 0px;
+	background: transparent;
+	margin-top: -4px;
+	margin-left: 1em;
+	margin-top: 1em;
+}
+
+.md-image>.md-meta {
+	color: #9B5146;
+}
+
+.md-image>.md-meta{
+	font-family: Menlo, 'Ubuntu Mono', Consolas, 'Courier New', 'Microsoft Yahei', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', serif;
+}
+
+
+#write>h3.md-focus:before{
+	left: -1.5rem;
+	color:#999;
+	border-color:#999;
+}
+#write>h4.md-focus:before{
+	left: -1.5rem;
+	top: .25rem;
+	color:#999;
+	border-color:#999;
+}
+#write>h5.md-focus:before{
+	left: -1.5rem;
+	top: .0.3125rem;
+	color:#999;
+	border-color:#999;
+}
+#write>h6.md-focus:before{
+	left: -1.5rem;
+	top: 0.3125rem;
+	color:#999;
+	border-color:#999;
+}
+
+.md-toc:focus .md-toc-content{
+	margin-top: 19px;
+}
+
+.md-toc-content:empty:before{
+	color: #065588;
+}
+.md-toc-item {
+	color: #065588;
+}
+#write div.md-toc-tooltip {
+	background-color: #f3f2ee;
+}
+
+#typora-sidebar {
+	background-color: #f3f2ee;
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.375);
+  	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.375);
+}
+
+.pin-outline #typora-sidebar {
+	background: inherit;
+	box-shadow: none;
+	border-right: 1px dashed;
+}
+
+.pin-outline #typora-sidebar:hover .outline-title-wrapper {
+	border-left:1px dashed;
+}
+
+.outline-item:hover {
+  background-color: #dadada;
+  border-left: 28px solid #dadada;
+  border-right: 18px solid #dadada;
+}
+
+.typora-node .outline-item:hover {
+  	border-right: 28px solid #dadada;
+}
+
+.outline-expander:before {
+  content: "\f0da";
+  font-family: FontAwesome;
+  font-size:14px;
+  top: 1px;
+}
+
+.outline-expander:hover:before,
+.outline-item-open>.outline-item>.outline-expander:before {
+  content: "\f0d7";
+}
+
+.modal-content {
+	background-color: #f3f2ee;
+}
+
+.auto-suggest-container ul li {
+	list-style-type: none;
+}
+
+/** UI for electron */
+
+.megamenu-menu,
+#top-titlebar, #top-titlebar *,
+.megamenu-content {
+	background: #f3f2ee;
+	color: #1f0909;
+}
+
+.megamenu-menu-header {
+	border-bottom: 1px dashed #202B33;
+}
+
+.megamenu-menu {
+	box-shadow: none;
+	border-right: 1px dashed;
+}
+
+header, .context-menu, .megamenu-content, footer {
+	font-family: "PT Serif", 'Times New Roman', Times, serif;
+    color: #1f0909;
+}
+
+#megamenu-back-btn {
+	color: #1f0909;
+	border-color: #1f0909;
+}
+
+.megamenu-menu-header #megamenu-menu-header-title:before {
+	color: #1f0909;
+}
+
+.megamenu-menu-list li a:hover, .megamenu-menu-list li a.active {
+	color: inherit;
+	background-color: #e8e7df;
+}
+
+.long-btn:hover {
+	background-color: #e8e7df;
+}
+
+#recent-file-panel tbody tr:nth-child(2n-1) {
+    background-color: transparent !important;
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(2) {
+    color: inherit;
+}
+
+.megamenu-menu-panel .btn {
+	background-color: #D2D1D1;
+}
+
+.btn-default {
+	background-color: transparent;
+}
+
+.typora-sourceview-on #toggle-sourceview-btn,
+.ty-show-word-count #footer-word-count {
+	background: #c7c5c5;
+}
+
+#typora-quick-open {
+    background-color: inherit;
+}
+
+.md-diagram-panel {
+	margin-top: 8px;
+}
+
+.file-list-item-file-name {
+	font-weight: initial;
+}
+
+.file-list-item-summary {
+	opacity: 1;
+}
+
+.file-list-item {
+	color: #777;
+}
+
+.file-list-item.active {
+	background-color: inherit;
+	color: black;
+}
+
+.ty-side-sort-btn.active {
+	background-color: inherit;
+}
+
+.file-list-item.active .file-list-item-file-name  {
+	font-weight: bold;
+}
+
+.file-list-item{
+    opacity:1 !important;
+}
+
+.file-library-node.active>.file-node-background{
+	background-color: rgba(32, 43, 51, 0.63);
+	background-color: var(--active-file-bg-color);
+}
+
+.file-tree-node.active>.file-node-content{
+	color: white;
+	color: var(--active-file-text-color);
+}
+
+.md-task-list-item>input {
+	margin-left: -1.7em;
+	margin-top: calc(1rem - 12px);
+}
+
+input {
+	border: 1px solid #aaa;
+}
+
+.megamenu-menu-header #megamenu-menu-header-title,
+.megamenu-menu-header:hover, 
+.megamenu-menu-header:focus {
+	color: inherit;
+}
+
+.dropdown-menu .divider {
+	border-color: #e5e5e5;
+}
+
+/* https://github.com/typora/typora-issues/issues/2046 */
+.os-windows-7 strong,
+.os-windows-7 strong  {
+	font-weight: 760;
+}
+
+.ty-preferences .btn-default {
+	background: transparent;
+}
+
+.ty-preferences .window-header {
+	border-bottom: 1px dashed #202B33;
+	box-shadow: none;
+}
+
+#sidebar-loading-template, #sidebar-loading-template.file-list-item {
+	color: #777;
+}
+
+.searchpanel-search-option-btn.active {
+	background: #777;
+	color: white;
+}
+
+
+</style>
+</head>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><h1><a name="文献收集有监督半监督多视图学习）from-ieee-xplore-and-dblp" class="md-header-anchor"></a><span>文献收集（有监督、半监督多视图学习）from IEEE xplore and dblp</span></h1><h1><a name="from-conferences" class="md-header-anchor"></a><span>from conferences</span></h1><h2><a name="a-novel-weighted-hybrid-multi-view-fusion-algorithm-for-semi-supervised-classification" class="md-header-anchor"></a><span>A Novel Weighted Hybrid Multi-View Fusion Algorithm for Semi-Supervised Classification</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> </span><a href='https://ieeexplore.ieee.org/xpl/conhome/8682239/proceeding'><span>2019 IEEE International Symposium on Circuits and Systems (ISCAS)</span></a></p><p><a href='https://ieeexplore.ieee.org/document/8702470'><span>地址</span></a></p><p><span>加权混合多视图的特征融合方法</span></p></blockquote><h2><a name="multi-feature-fusion-based-on-supervised-multi-view-multi-label-canonical-correlation-projection" class="md-header-anchor"></a><span>Multi-feature Fusion Based on Supervised Multi-view Multi-label Canonical Correlation Projection</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> </span><a href='https://ieeexplore.ieee.org/xpl/conhome/8671773/proceeding'><span>ICASSP 2019 - 2019 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</span></a></p><p><a href='https://ieeexplore.ieee.org/document/8682060'><span>地址</span></a></p><p><span>多视图：来自不同 特性的cnn网络的特征；解决多标签问题</span></p></blockquote><h2><a name="3d-semi-supervised-learning-with-uncertainty-aware-multi-view-co-training" class="md-header-anchor"></a><span>3D Semi-Supervised Learning with Uncertainty-Aware Multi-View Co-Training</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> </span><a href='https://ieeexplore.ieee.org/xpl/conhome/9087828/proceeding'><span>2020 IEEE Winter Conference on Applications of Computer Vision (WACV)</span></a></p><p><a href='https://ieeexplore.ieee.org/document/9093608'><span>地址</span></a></p><p><span>半监督多视图的医学图像分割，通过置换3D数据来构造多视图</span></p></blockquote><h2><a name="neural-network-maximizing-ordinally-supervised-multi-view-canonical-correlation-for-deterioration-level-estimation" class="md-header-anchor"></a><span>Neural Network Maximizing Ordinally Supervised Multi-View Canonical Correlation for Deterioration Level Estimation</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> </span><a href='https://ieeexplore.ieee.org/xpl/conhome/8791230/proceeding'><span>2019 IEEE International Conference on Image Processing (ICIP)</span></a></p><p><a href='https://ieeexplore.ieee.org/document/8803038'><span>地址</span></a></p><p><span>从少量数据构造多视图+典型相关性分析，实现退化水平的估计</span></p></blockquote><h2><a name="multi-view-semi-supervised-learning-using-genetic-programming-interpretable-classification-rules" class="md-header-anchor"></a><span>Multi-view semi-supervised learning using genetic programming interpretable classification rules</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> </span><a href='https://ieeexplore.ieee.org/xpl/conhome/7959755/proceeding'><span>2017 IEEE Congress on Evolutionary Computation (CEC)</span></a></p><p><a href='https://ieeexplore.ieee.org/document/7969362'><span>地址</span></a></p><p><span>多视图应用于可解释的基于规则的分类器</span></p></blockquote><h2><a name="ssdmv-semi-supervised-deep-social-spammer-detection-by-multi-view-data-fusion" class="md-header-anchor"></a><span>SSDMV: Semi-Supervised Deep Social Spammer Detection by Multi-view Data Fusion</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> </span><a href='https://ieeexplore.ieee.org/xpl/conhome/8591042/proceeding'><span>2018 IEEE International Conference on Data Mining (ICDM)</span></a></p><p><a href='https://ieeexplore.ieee.org/document/8594849'><span>地址</span></a></p><p><span>解决多视图之间的低耦合，注释的稀缺性，完成垃圾邮件制造者的用户检测</span></p></blockquote><h2><a name="weakly-supervised-3d-human-pose-learning-via-multi-view-images-in-the-wild" class="md-header-anchor"></a><span>Weakly-Supervised 3D Human Pose Learning via Multi-View Images in the Wild</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> </span><a href='https://ieeexplore.ieee.org/xpl/conhome/9142308/proceeding'><span>2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</span></a></p><p><a href='https://ieeexplore.ieee.org/document/9157484'><span>地址</span></a></p><p><span>半监督/弱监督的多视图学习解决野外人体姿态估计</span></p></blockquote><h2><a name="fuzzy-clustering-of-multi-view-relational-data-with-pairwise-constraints" class="md-header-anchor"></a><span>Fuzzy clustering of multi-view relational data with pairwise constraints</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> </span><a href='https://ieeexplore.ieee.org/xpl/conhome/8011834/proceeding'><span>2017 IEEE International Conference on Fuzzy Systems (FUZZ-IEEE)</span></a></p><p><a href='https://ieeexplore.ieee.org/document/8015529'><span>地址</span></a></p><p><span>半监督多视图模糊聚类</span></p></blockquote><p>&nbsp;</p><h1><a name="from-journals" class="md-header-anchor"></a><span>from Journals</span></h1><h2><a name="auto-weighted-multi-view-learning-for-image-clustering-and-semi-supervised-classification" class="md-header-anchor"></a><span>Auto-Weighted Multi-View Learning for Image Clustering and Semi-Supervised Classification</span></h2><blockquote><p><a href='https://ieeexplore.ieee.org/document/8047308'><span>地址</span></a></p><p><span>自动给多视图提供理想权重，完成了图像处理中的聚类或半监督分类问题；摘要提到了</span><strong><span>最优图</span></strong></p></blockquote><h2><a name="generalized-multi-view-embedding-for-visual-recognition-and-cross-modal-retrieval" class="md-header-anchor"></a><span>Generalized Multi-View Embedding for Visual Recognition and Cross-Modal Retrieval</span></h2><blockquote><p><a href='https://ieeexplore.ieee.org/document/8026149'><span>地址</span></a></p><p><span>研究了多视图嵌入方法在视觉目标识别和跨模态图像检索方面的有效性，并在这两种应用中取得了优于相关方法的结果。</span></p></blockquote><h2><a name="semi-supervised-multi-view-discrete-hashing-for-fast-image-search" class="md-header-anchor"></a><span>Semi-Supervised Multi-View Discrete Hashing for Fast Image Search</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> </span><a href='https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=83'><span>IEEE Transactions on Image Processing</span></a><span> ( Volume: 26 , </span><a href='https://ieeexplore.ieee.org/xpl/tocresult.jsp?isnumber=7896673'><span>Issue: 6</span></a><span> , June 2017 )</span></p><p><a href='https://ieeexplore.ieee.org/document/7864423'><span>地址</span></a></p><p><span>改进了半监督多视图 hash模型，“不相关的多视图特征”，“复合离散hash”</span></p></blockquote><h2><a name="scalable-multi-view-semi-supervised-classification-via-adaptive-regression" class="md-header-anchor"></a><span>Scalable Multi-View Semi-Supervised Classification via Adaptive Regression</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> </span><a href='https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=83'><span>IEEE Transactions on Image Processing</span></a><span> ( Volume: 26 , </span><a href='https://ieeexplore.ieee.org/xpl/tocresult.jsp?isnumber=7956620'><span>Issue: 9</span></a><span> , Sept. 2017 )</span></p><p><a href='https://ieeexplore.ieee.org/document/7953537'><span>地址</span></a></p><p><span>基于自适应多回归的半监督分类</span></p></blockquote><h2><a name="generalized-multi-view-embedding-for-visual-recognition-and-cross-modal-retrieval-n63" class="md-header-anchor"></a><span>Generalized Multi-View Embedding for Visual Recognition and Cross-Modal Retrieval</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> </span><a href='https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6221036'><span>IEEE Transactions on Cybernetics</span></a><span> ( Volume: 48 , </span><a href='https://ieeexplore.ieee.org/xpl/tocresult.jsp?isnumber=8438339'><span>Issue: 9</span></a><span> , Sept. 2018 )</span></p><p><a href='https://ieeexplore.ieee.org/document/8026149'><span>地址</span></a></p><p><span>基于深度学习实现多视图的非线性扩展</span></p></blockquote><h2><a name="pml-locnet-improving-object-localization-with-prior-induced-multi-view-learning-network" class="md-header-anchor"></a><span>PML-LocNet: Improving Object Localization With Prior-Induced Multi-View Learning Network</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> </span><a href='https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=83'><span>IEEE Transactions on Image Processing</span></a><span> ( Volume: 29 )</span></p><p><a href='https://ieeexplore.ieee.org/document/8884670'><span>地址</span></a></p><p><span>基于多视图实现图像级别的若弱监督目标定位</span></p></blockquote><h2><a name="bi-view-semi-supervised-learning-based-semantic-human-activity-recognition-using-accelerometers" class="md-header-anchor"></a><span>Bi-View Semi-Supervised Learning Based Semantic Human Activity Recognition Using Accelerometers</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> </span><a href='https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=7755'><span>IEEE Transactions on Mobile Computing</span></a><span> ( Volume: 17 , </span><a href='https://ieeexplore.ieee.org/xpl/tocresult.jsp?isnumber=8424847'><span>Issue: 9</span></a><span> , Sept. 1 2018 )</span></p><p><a href='https://ieeexplore.ieee.org/document/8259352'><span>地址</span></a></p><p><span>双视图半监督学习实现人类动作识别</span></p></blockquote><h2><a name="multi-scale-multi-view-deep-feature-aggregation-for-food-recognition" class="md-header-anchor"></a><span>Multi-Scale Multi-View Deep Feature Aggregation for Food Recognition</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> </span><a href='https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=83'><span>IEEE Transactions on Image Processing</span></a><span> ( Volume: 29 )</span></p><p><a href='https://ieeexplore.ieee.org/document/8779586'><span>地址</span></a></p><p><span>通过多视图捕获不同层次的语义特征，最后聚合特征，完成食物的图像识别</span></p></blockquote><h1><a name="dblp" class="md-header-anchor"></a><span>dblp</span></h1><p>&nbsp;</p><h2><a name="semi-supervised-multi-view-correlation-feature-learning-with-application-to-webpage-classification" class="md-header-anchor"></a><span>Semi-Supervised Multi-View Correlation Feature Learning with Application to Webpage Classification </span></h2><blockquote><p><span>Published：AAAI</span></p><p><a href='http://vipl.ict.ac.cn/en/uploadfile/upload/2018020712555419.pdf'><span>地址</span></a></p><p><span>半监督多视图网页分类</span></p></blockquote><h2><a name="multi-view-clustering-and-semi-supervised-classification-with-adaptive-neighbours" class="md-header-anchor"></a><span>Multi-view clustering and semi-supervised classification with adaptive neighbours</span></h2><blockquote><p><span>Published：AAAI</span></p><p><a href='https://link.springer.com/chapter/10.1007/978-3-319-91458-9_25'><span>地址</span></a></p><p><span>基于半监督/监督和图的划分的多视图分类/聚类</span></p></blockquote><h2><a name="supervised-multiview-learning-based-on-simultaneous-learning-of-multiview-intact-and-single-view-classifier" class="md-header-anchor"></a><span>Supervised multiview learning based on simultaneous learning of multiview intact and single view classifier</span></h2><blockquote><p><span>Published： Neural Comput</span></p><p><span>为每个数据点定义一个完整向量，为每个视图定义一个视图条件变换矩阵，并提出用相应的完整向量与变换矩阵的乘积重构多个视图特征向量 + 线性分类器</span></p></blockquote><h2><a name="semi-supervised-one-pass-multi-view-learning" class="md-header-anchor"></a><span>Semi-supervised one-pass multi-view learning</span></h2><blockquote><p><span>Published:  Neural Comput</span></p><p><a href='https://link.springer.com/article/10.1007/s00521-018-3654-3'><span>地址</span></a></p><p><span>半监督，只对数据集进行一次遍历，减少计算开销</span></p></blockquote><h2><a name="sparse-regularized-discriminative-canonical-correlation-analysis-for-multi-view-semi-supervised-learning" class="md-header-anchor"></a><span>Sparse regularized discriminative canonical correlation analysis for multi-view semi-supervised learning</span></h2><blockquote><p><span>Published:  Neural Comput</span></p><p><a href='https://link.springer.com/article/10.1007/s00521-018-3582-2'><span>地址</span></a></p><p><span>稀疏正则化，尽量利用有限的标签，学习结构信息，减少数据依赖性</span></p></blockquote><h2><a name="multi-view-multi-instance-multi-label-learning-based-on-collaborative-matrix-factorization" class="md-header-anchor"></a><span>Multi-View Multi-Instance Multi-Label Learning based on Collaborative Matrix Factorization</span></h2><blockquote><p><span>Published：IJCAI</span></p><p><a href='https://arxiv.org/abs/1905.05061'><span>地址</span></a></p><p><span>多视图、多实例、多标签任务</span></p></blockquote><h2><a name="deep-correlated-predictive-subspace-learning-for-incomplete-multi-view-semi-supervised-classification" class="md-header-anchor"></a><span>Deep Correlated Predictive Subspace Learning for Incomplete Multi-View Semi-Supervised Classification</span></h2><blockquote><p><span>Published：IJCAI</span></p><p><a href='https://www.ijcai.org/Proceedings/2019/0559.pdf'><span>地址</span></a></p><p><span>不完全多视图半监督分类框架：解决视图信息的不完整性</span></p></blockquote><h2><a name="dynamically-weighted-multi-view-semi-supervised-learning-for-captcha" class="md-header-anchor"></a><span>Dynamically Weighted Multi-View Semi-Supervised Learning for CAPTCHA</span></h2><blockquote><p><span>Published：PAKDD</span></p><p><a href='https://link.springer.com/chapter/10.1007/978-3-030-16145-3_27'><span>地址</span></a></p><p><span>动态权重的半监督多视图，人工蜂群去除视图冗余性</span></p></blockquote><h2><a name="multi-view-semi-supervised-learning-for-classification-on-dynamic-networks" class="md-header-anchor"></a><span>Multi-view semi-supervised learning for classification on dynamic networks</span></h2><blockquote><p><span>Published: </span><a href='https://www.sciencedirect.com/science/journal/09507051'><span>Knowledge-Based Systems</span></a></p><p><span>[地址] (</span><a href='https://www.sciencedirect.com/science/article/abs/pii/S0950705120301258' target='_blank' class='url'>https://www.sciencedirect.com/science/article/abs/pii/S0950705120301258</a><span>)</span></p><p><span>将动态网络视为多视图，引入半监督多视图学习来实现动态网络分类</span></p></blockquote><h2><a name="semi-supervised-multi-view-clustering-with-graph-regularized-partially-shared-non-negative-matrix-factorization" class="md-header-anchor"></a><span>Semi-supervised multi-view clustering with Graph-regularized Partially Shared Non-negative Matrix Factorization</span></h2><blockquote><p><span>Published: </span><a href='https://www.sciencedirect.com/science/journal/09507051'><span>Knowledge-Based Systems</span></a></p><p><a href='https://www.sciencedirect.com/science/article/abs/pii/S0950705119305271'><span>地址</span></a></p><p><span>非负矩阵分解学习降维因子，以改进半监督多视图聚类</span></p></blockquote><h2><a name="semi-supervised-multi-view-clustering-based-on-constrained-nonnegative-matrix-factorization" class="md-header-anchor"></a><span>Semi-supervised multi-view clustering based on constrained nonnegative matrix factorization</span></h2><blockquote><p><span>Published: </span><a href='https://www.sciencedirect.com/science/journal/09507051'><span>Knowledge-Based Systems</span></a></p><p><a href='https://www.sciencedirect.com/science/article/abs/pii/S0950705119302734'><span>地址</span></a></p><p><span>半监督多视图聚类问题：构建共享的标签约束矩阵，其中标签约束矩阵可以保证标签信息被融合到每个视图的新表示中；构建辅助矩阵整合不同视图的共享信息</span></p></blockquote><h2><a name="supervised-fractional-order-embedding-geometrical-multi-view-cca-sfgmcca-for-multiple-feature-integration" class="md-header-anchor"></a><span>Supervised Fractional-Order Embedding Geometrical Multi-View CCA (SFGMCCA) for Multiple Feature Integration</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> </span><a href='https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6287639'><span>IEEE Access</span></a><span> ( Volume: 8 )</span></p><p><a href='https://ieeexplore.ieee.org/abstract/document/9121214'><span>地址</span></a></p><p><span>视图间特征、视图内特征，小样本和高维数据积分，</span></p></blockquote><h2><a name="a-novel-adaptive-multi-view-non-negative-graph-semi-supervised-elm" class="md-header-anchor"></a><span>A Novel Adaptive Multi-View Non-Negative Graph Semi-Supervised ELM</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> </span><a href='https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6287639'><span>IEEE Access</span></a><span> ( Volume: 8 )</span></p><p><a href='https://ieeexplore.ieee.org/abstract/document/9103516'><span>地址</span></a></p><p><span>强调框架的自适应：线性和非线性、多视图和单视图的自适应等</span></p></blockquote><h2><a name="general-multi-view-semi-supervised-least-squares-support-vector-machines-with-multi-manifold-regularization" class="md-header-anchor"></a><span>General multi-view semi-supervised least squares support vector machines with multi-manifold regularization</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> Inf Fusion</span></p><p><a href='https://www.sciencedirect.com/science/article/abs/pii/S1566253520302608'><span>地址</span></a></p><p><span>多视图拉普拉斯支持向量机只支持两个视图，本文进行了多个视图的设计和推导</span></p></blockquote><h2><a name="semi-supervised-multi-view-clustering-based-on-orthonormality-constrained-nonnegative-matrix-factorization" class="md-header-anchor"></a><span>Semi-Supervised Multi-view clustering based on orthonormality-constrained nonnegative matrix factorization</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> Inf Sci</span></p><p><a href='https://www.sciencedirect.com/science/article/pii/S0020025520304904'><span>地址</span></a></p><p><span>正交性约束条件来获得各视图的理想表示，并利用正则化方法来整合来自不同视图的互补信息</span></p></blockquote><h2><a name="semi-supervised-feature-selection-analysis-with-structured-multi-view-sparse-regularization" class="md-header-anchor"></a><span>Semi-supervised feature selection analysis with structured multi-view sparse regularization</span></h2><blockquote><p><span>Published:  Neural Comput</span></p><p><a href='https://www.sciencedirect.com/science/article/abs/pii/S0925231218312153'><span>地址</span></a></p><p><span>半监督多视图，视图内-视图间信息，多视图Hessian正则化来提高半监督学习性能</span></p></blockquote><h2><a name="semi-supervised-multi-view-maximum-entropy-discrimination-with-expectation-laplacian-regularization" class="md-header-anchor"></a><span>Semi-supervised multi-view maximum entropy discrimination with expectation Laplacian regularization</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> Inf Fusion</span></p><p><span>将期望Laplacian正则化用于概率模型中  （= ？最大熵判别）的半监督学习</span></p></blockquote><h2><a name="semi-supervised-multi-view-individual-and-sharable-feature-learning-for-webpage-classification" class="md-header-anchor"></a><span>Semi-supervised Multi-view Individual and Sharable Feature Learning for Webpage Classification</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> WWW 2019</span></p><p><span>视图内-视图间信息，跨视图属性</span></p></blockquote><h2><a name="a-multi-view-semi-supervised-approach-for-task-level-web-search-success-evaluation" class="md-header-anchor"></a><span>A multi-view semi-supervised approach for task-level web search success evaluation</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> </span><a href='https://www.sciencedirect.com/science/journal/00200255'><span>Information Sciences</span></a></p><p><span>浏览网页时用hi是否搜索成功的二分类问题：操作视图和时间视图</span></p></blockquote><h2><a name="supervised-multiview-feature-selection-exploring-homogeneity-and-heterogeneity-with-ℓ12--norm-and-automatic-view-generation" class="md-header-anchor"></a><span>Supervised Multiview Feature Selection Exploring Homogeneity and Heterogeneity With ℓ1,2 -Norm and Automatic View Generation</span></h2><blockquote><p><strong><span>Published in:</span></strong><span> </span><a href='https://dblp.uni-trier.de/db/journals/tgrs/tgrs55.html#ChenZCSG17'><span>IEEE Trans. Geosci. Remote. Sens.</span></a></p><p><span>利用数据的同质性和异构性，SMFS利用亲和传播自动将特征分解为多个不相交且有意义的特征组或视图</span></p></blockquote></div>
+</body>
+</html>

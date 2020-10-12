@@ -1,0 +1,751 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>attention</title><link href='https://fonts.loli.net/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic-ext,cyrillic,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+  .typora-export h1::after, .typora-export h2::after, .typora-export h3::after, .typora-export h4::after, .typora-export h5::after, .typora-export h6::after { content: ""; display: block; height: 100px; margin-bottom: -100px; }
+}
+
+
+/* meyer reset -- http://meyerweb.com/eric/tools/css/reset/ , v2.0 | 20110126 | License: none (public domain) */
+
+@include-when-export url(https://fonts.loli.net/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic-ext,cyrillic,latin-ext);
+
+/* =========== */
+
+/* pt-serif-regular - latin */
+/* pt-serif-italic - latin */
+/* pt-serif-700 - latin */
+/* pt-serif-700italic - latin */
+:root {
+	--active-file-bg-color: #dadada;
+	--active-file-bg-color: rgba(32, 43, 51, 0.63);
+	--active-file-text-color: white;
+	--bg-color: #f3f2ee;
+	--text-color: #1f0909;
+	--control-text-color: #444;
+	--rawblock-edit-panel-bd: #e5e5e5;
+
+	--select-text-bg-color: rgba(32, 43, 51, 0.63);
+  --select-text-font-color: white;
+}
+
+pre {
+	--select-text-bg-color: #36284e;
+	--select-text-font-color: #fff;
+}
+
+html {
+	font-size: 16px;
+}
+
+html, body {
+	background-color: #f3f2ee;
+	font-family: "PT Serif", 'Times New Roman', Times, serif;
+	color: #1f0909;
+	line-height: 1.5em;
+}
+
+/*#write {
+	overflow-x: auto;
+    max-width: initial;
+	padding-left: calc(50% - 17em);
+    padding-right: calc(50% - 17em);
+}
+
+@media (max-width: 36em) {
+ 	#write {
+ 		padding-left: 1em;
+    	padding-right: 1em;
+ 	}
+}*/
+
+#write {
+	max-width: 40em;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+			max-width: 914px;
+	}
+}
+
+ol li {
+	list-style-type: decimal;
+	list-style-position: outside;
+}
+ul li {
+	list-style-type: disc;
+	list-style-position: outside;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+blockquote,
+q {
+	quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* styles */
+
+/* ====== */
+
+/* headings */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: bold;
+}
+h1 {
+	font-size: 1.875em;
+	/*30 / 16*/
+	line-height: 1.6em;
+	/* 48 / 30*/
+	margin-top: 2em;
+}
+h2,
+h3 {
+	font-size: 1.3125em;
+	/*21 / 16*/
+	line-height: 1.15;
+	/*24 / 21*/
+	margin-top: 2.285714em;
+	/*48 / 21*/
+	margin-bottom: 1.15em;
+	/*24 / 21*/
+}
+h3 {
+	font-weight: normal;
+}
+h4 {
+	font-size: 1.125em;
+	/*18 / 16*/
+	margin-top: 2.67em;
+	/*48 / 18*/
+}
+h5,
+h6 {
+	font-size: 1em;
+	/*16*/
+}
+h1 {
+	border-bottom: 1px solid;
+	margin-bottom: 1.875em;
+	padding-bottom: 0.8125em;
+}
+/* links */
+
+a {
+	text-decoration: none;
+	color: #065588;
+}
+a:hover,
+a:active {
+	text-decoration: underline;
+}
+/* block spacing */
+
+p,
+blockquote,
+.md-fences {
+	margin-bottom: 1.5em;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-bottom: 1.5em;
+}
+/* blockquote */
+
+blockquote {
+	font-style: italic;
+	border-left: 5px solid;
+	margin-left: 2em;
+	padding-left: 1em;
+}
+/* lists */
+
+ul,
+ol {
+	margin: 0 0 1.5em 1.5em;
+}
+/* tables */
+.md-meta,.md-before, .md-after {
+	color:#999;
+}
+
+table {
+	margin-bottom: 1.5em;
+	/*24 / 16*/
+	font-size: 1em;
+	/* width: 100%; */
+}
+thead th,
+tfoot th {
+	padding: .25em .25em .25em .4em;
+	text-transform: uppercase;
+}
+th {
+	text-align: left;
+}
+td {
+	vertical-align: top;
+	padding: .25em .25em .25em .4em;
+}
+
+code,
+.md-fences {
+	background-color: #dadada;
+}
+
+code {
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.md-fences {
+	margin-left: 2em;
+	margin-bottom: 3em;
+	padding-left: 1ch;
+	padding-right: 1ch;
+}
+
+pre,
+code,
+tt {
+	font-size: .875em;
+	line-height: 1.714285em;
+}
+/* some fixes */
+
+h1 {
+	line-height: 1.3em;
+	font-weight: normal;
+	margin-bottom: 0.5em;
+}
+
+p + ul,
+p + ol{
+	margin-top: .5em;
+}
+
+h3 + ul,
+h4 + ul,
+h5 + ul,
+h6 + ul,
+h3 + ol,
+h4 + ol,
+h5 + ol,
+h6 + ol {
+	margin-top: .5em;
+}
+
+li > ul,
+li > ol {
+	margin-top: inherit;
+	margin-bottom: 0;
+}
+
+li ol>li {
+	list-style-type: lower-alpha;
+}
+
+li li ol>li{
+	list-style-type: lower-roman;
+}
+
+h2,
+h3 {
+	margin-bottom: .75em;
+}
+hr {
+	border-top: none;
+	border-right: none;
+	border-bottom: 1px solid;
+	border-left: none;
+}
+h1 {
+	border-color: #c5c5c5;
+}
+blockquote {
+	border-color: #bababa;
+	color: #656565;
+}
+
+blockquote ul,
+blockquote ol {
+	margin-left:0;
+}
+
+.ty-table-edit {
+	background-color: transparent;
+}
+thead {
+	background-color: #dadada;
+}
+tr:nth-child(even) {
+	background: #e8e7e7;
+}
+hr {
+	border-color: #c5c5c5;
+}
+.task-list{
+	padding-left: 1rem;
+}
+
+.md-task-list-item {
+	padding-left: 1.5rem;
+	list-style-type: none;
+}
+
+.md-task-list-item > input:before {
+	content: '\221A';
+	display: inline-block;
+	width: 1.25rem;
+  	height: 1.6rem;
+	vertical-align: middle;
+	text-align: center;
+	color: #ddd;
+	background-color: #F3F2EE;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before{
+	color: inherit;
+}
+
+#write pre.md-meta-block {
+	min-height: 1.875rem;
+	color: #555;
+	border: 0px;
+	background: transparent;
+	margin-top: -4px;
+	margin-left: 1em;
+	margin-top: 1em;
+}
+
+.md-image>.md-meta {
+	color: #9B5146;
+}
+
+.md-image>.md-meta{
+	font-family: Menlo, 'Ubuntu Mono', Consolas, 'Courier New', 'Microsoft Yahei', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', serif;
+}
+
+
+#write>h3.md-focus:before{
+	left: -1.5rem;
+	color:#999;
+	border-color:#999;
+}
+#write>h4.md-focus:before{
+	left: -1.5rem;
+	top: .25rem;
+	color:#999;
+	border-color:#999;
+}
+#write>h5.md-focus:before{
+	left: -1.5rem;
+	top: .0.3125rem;
+	color:#999;
+	border-color:#999;
+}
+#write>h6.md-focus:before{
+	left: -1.5rem;
+	top: 0.3125rem;
+	color:#999;
+	border-color:#999;
+}
+
+.md-toc:focus .md-toc-content{
+	margin-top: 19px;
+}
+
+.md-toc-content:empty:before{
+	color: #065588;
+}
+.md-toc-item {
+	color: #065588;
+}
+#write div.md-toc-tooltip {
+	background-color: #f3f2ee;
+}
+
+#typora-sidebar {
+	background-color: #f3f2ee;
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.375);
+  	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.375);
+}
+
+.pin-outline #typora-sidebar {
+	background: inherit;
+	box-shadow: none;
+	border-right: 1px dashed;
+}
+
+.pin-outline #typora-sidebar:hover .outline-title-wrapper {
+	border-left:1px dashed;
+}
+
+.outline-item:hover {
+  background-color: #dadada;
+  border-left: 28px solid #dadada;
+  border-right: 18px solid #dadada;
+}
+
+.typora-node .outline-item:hover {
+  	border-right: 28px solid #dadada;
+}
+
+.outline-expander:before {
+  content: "\f0da";
+  font-family: FontAwesome;
+  font-size:14px;
+  top: 1px;
+}
+
+.outline-expander:hover:before,
+.outline-item-open>.outline-item>.outline-expander:before {
+  content: "\f0d7";
+}
+
+.modal-content {
+	background-color: #f3f2ee;
+}
+
+.auto-suggest-container ul li {
+	list-style-type: none;
+}
+
+/** UI for electron */
+
+.megamenu-menu,
+#top-titlebar, #top-titlebar *,
+.megamenu-content {
+	background: #f3f2ee;
+	color: #1f0909;
+}
+
+.megamenu-menu-header {
+	border-bottom: 1px dashed #202B33;
+}
+
+.megamenu-menu {
+	box-shadow: none;
+	border-right: 1px dashed;
+}
+
+header, .context-menu, .megamenu-content, footer {
+	font-family: "PT Serif", 'Times New Roman', Times, serif;
+    color: #1f0909;
+}
+
+#megamenu-back-btn {
+	color: #1f0909;
+	border-color: #1f0909;
+}
+
+.megamenu-menu-header #megamenu-menu-header-title:before {
+	color: #1f0909;
+}
+
+.megamenu-menu-list li a:hover, .megamenu-menu-list li a.active {
+	color: inherit;
+	background-color: #e8e7df;
+}
+
+.long-btn:hover {
+	background-color: #e8e7df;
+}
+
+#recent-file-panel tbody tr:nth-child(2n-1) {
+    background-color: transparent !important;
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(2) {
+    color: inherit;
+}
+
+.megamenu-menu-panel .btn {
+	background-color: #D2D1D1;
+}
+
+.btn-default {
+	background-color: transparent;
+}
+
+.typora-sourceview-on #toggle-sourceview-btn,
+.ty-show-word-count #footer-word-count {
+	background: #c7c5c5;
+}
+
+#typora-quick-open {
+    background-color: inherit;
+}
+
+.md-diagram-panel {
+	margin-top: 8px;
+}
+
+.file-list-item-file-name {
+	font-weight: initial;
+}
+
+.file-list-item-summary {
+	opacity: 1;
+}
+
+.file-list-item {
+	color: #777;
+}
+
+.file-list-item.active {
+	background-color: inherit;
+	color: black;
+}
+
+.ty-side-sort-btn.active {
+	background-color: inherit;
+}
+
+.file-list-item.active .file-list-item-file-name  {
+	font-weight: bold;
+}
+
+.file-list-item{
+    opacity:1 !important;
+}
+
+.file-library-node.active>.file-node-background{
+	background-color: rgba(32, 43, 51, 0.63);
+	background-color: var(--active-file-bg-color);
+}
+
+.file-tree-node.active>.file-node-content{
+	color: white;
+	color: var(--active-file-text-color);
+}
+
+.md-task-list-item>input {
+	margin-left: -1.7em;
+	margin-top: calc(1rem - 12px);
+}
+
+input {
+	border: 1px solid #aaa;
+}
+
+.megamenu-menu-header #megamenu-menu-header-title,
+.megamenu-menu-header:hover, 
+.megamenu-menu-header:focus {
+	color: inherit;
+}
+
+.dropdown-menu .divider {
+	border-color: #e5e5e5;
+}
+
+/* https://github.com/typora/typora-issues/issues/2046 */
+.os-windows-7 strong,
+.os-windows-7 strong  {
+	font-weight: 760;
+}
+
+.ty-preferences .btn-default {
+	background: transparent;
+}
+
+.ty-preferences .window-header {
+	border-bottom: 1px dashed #202B33;
+	box-shadow: none;
+}
+
+#sidebar-loading-template, #sidebar-loading-template.file-list-item {
+	color: #777;
+}
+
+.searchpanel-search-option-btn.active {
+	background: #777;
+	color: white;
+}
+
+
+</style>
+</head>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><h1><a name="attention-基础" class="md-header-anchor"></a><span>Attention 基础</span></h1><h2><a name="1-encoder-decoder模型" class="md-header-anchor"></a><span>1. encoder-decoder模型</span></h2><blockquote><p><span>Encoder-Decoder框架可以看作是一种深度学习领域的研究模式，应用场景异常广泛。图2是文本处理领域里常用的Encoder-Decoder框架最抽象的一种表示。</span></p><p><img src="D:\Typora\img\encoder-decoder.JPG" referrerpolicy="no-referrer" alt="encoder-decoder"></p></blockquote><blockquote><p><span>文本处理领域的 Encoder-Decoder框架可以这么直观地去理解：可以把它看作适合处理由一个句子（或篇章）生成另外一个句子（或篇章）的通用处理模型。对于句子对 (Source,Target)，我们的目标是给定输入句子Source，期待通过 Encoder-Decoder框架来生成目标句子Target。Source和Target可以是同一种语言，也可以是两种不同的语言。而Source和Target分别由各自的单词序列构成；</span></p><div contenteditable="false" spellcheck="false" class="mathjax-block md-end-block md-math-block md-rawblock" id="mathjax-n8" cid="n8" mdtype="math_block"><div class="md-rawblock-container md-math-container" tabindex="-1"><div class="MathJax_SVG_Display" style="text-align: center;"><span class="MathJax_SVG" id="MathJax-Element-1-Frame" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="27.881ex" height="2.634ex" viewBox="0 -809.3 12004.5 1134.2" role="img" focusable="false" style="vertical-align: -0.755ex; max-width: 100%;"><defs><path stroke-width="0" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path><path stroke-width="0" id="E1-MJMATHI-6F" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path><path stroke-width="0" id="E1-MJMATHI-75" d="M21 287Q21 295 30 318T55 370T99 420T158 442Q204 442 227 417T250 358Q250 340 216 246T182 105Q182 62 196 45T238 27T291 44T328 78L339 95Q341 99 377 247Q407 367 413 387T427 416Q444 431 463 431Q480 431 488 421T496 402L420 84Q419 79 419 68Q419 43 426 35T447 26Q469 29 482 57T512 145Q514 153 532 153Q551 153 551 144Q550 139 549 130T540 98T523 55T498 17T462 -8Q454 -10 438 -10Q372 -10 347 46Q345 45 336 36T318 21T296 6T267 -6T233 -11Q189 -11 155 7Q103 38 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E1-MJMATHI-72" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E1-MJMATHI-63" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path><path stroke-width="0" id="E1-MJMATHI-65" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path><path stroke-width="0" id="E1-MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path stroke-width="0" id="E1-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path stroke-width="0" id="E1-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path><path stroke-width="0" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="0" id="E1-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path><path stroke-width="0" id="E1-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path stroke-width="0" id="E1-MJMAIN-33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path stroke-width="0" id="E1-MJMAIN-2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z"></path><path stroke-width="0" id="E1-MJMATHI-6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E1-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E1-MJMATHI-53" x="0" y="0"></use><use xlink:href="#E1-MJMATHI-6F" x="645" y="0"></use><use xlink:href="#E1-MJMATHI-75" x="1130" y="0"></use><use xlink:href="#E1-MJMATHI-72" x="1702" y="0"></use><use xlink:href="#E1-MJMATHI-63" x="2153" y="0"></use><use xlink:href="#E1-MJMATHI-65" x="2586" y="0"></use><use xlink:href="#E1-MJMAIN-3D" x="3329" y="0"></use><use xlink:href="#E1-MJMAIN-28" x="4385" y="0"></use><g transform="translate(4774,0)"><use xlink:href="#E1-MJMATHI-78" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E1-MJMAIN-31" x="808" y="-213"></use></g><use xlink:href="#E1-MJMAIN-2C" x="5800" y="0"></use><g transform="translate(6244,0)"><use xlink:href="#E1-MJMATHI-78" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E1-MJMAIN-32" x="808" y="-213"></use></g><use xlink:href="#E1-MJMAIN-2C" x="7270" y="0"></use><g transform="translate(7714,0)"><use xlink:href="#E1-MJMATHI-78" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E1-MJMAIN-33" x="808" y="-213"></use></g><use xlink:href="#E1-MJMAIN-2E" x="8740" y="0"></use><use xlink:href="#E1-MJMAIN-2E" x="9185" y="0"></use><use xlink:href="#E1-MJMAIN-2E" x="9629" y="0"></use><use xlink:href="#E1-MJMAIN-2C" x="10074" y="0"></use><g transform="translate(10519,0)"><use xlink:href="#E1-MJMATHI-78" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E1-MJMATHI-6E" x="808" y="-213"></use></g><use xlink:href="#E1-MJMAIN-29" x="11615" y="0"></use></g></svg></span></div><script type="math/tex; mode=display" id="MathJax-Element-1">Source  = (x_1,x_2,x_3...,x_n)</script></div></div><div contenteditable="false" spellcheck="false" class="mathjax-block md-end-block md-math-block md-rawblock" id="mathjax-n9" cid="n9" mdtype="math_block"><div class="md-rawblock-container md-math-container" tabindex="-1"><div class="MathJax_SVG_Display" style="text-align: center;"><span class="MathJax_SVG" id="MathJax-Element-2-Frame" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="26.402ex" height="2.634ex" viewBox="0 -809.3 11367.4 1134.2" role="img" focusable="false" style="vertical-align: -0.755ex; max-width: 100%;"><defs><path stroke-width="0" id="E5-MJMATHI-54" d="M40 437Q21 437 21 445Q21 450 37 501T71 602L88 651Q93 669 101 677H569H659Q691 677 697 676T704 667Q704 661 687 553T668 444Q668 437 649 437Q640 437 637 437T631 442L629 445Q629 451 635 490T641 551Q641 586 628 604T573 629Q568 630 515 631Q469 631 457 630T439 622Q438 621 368 343T298 60Q298 48 386 46Q418 46 427 45T436 36Q436 31 433 22Q429 4 424 1L422 0Q419 0 415 0Q410 0 363 1T228 2Q99 2 64 0H49Q43 6 43 9T45 27Q49 40 55 46H83H94Q174 46 189 55Q190 56 191 56Q196 59 201 76T241 233Q258 301 269 344Q339 619 339 625Q339 630 310 630H279Q212 630 191 624Q146 614 121 583T67 467Q60 445 57 441T43 437H40Z"></path><path stroke-width="0" id="E5-MJMATHI-61" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path><path stroke-width="0" id="E5-MJMATHI-72" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E5-MJMATHI-67" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path><path stroke-width="0" id="E5-MJMATHI-65" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path><path stroke-width="0" id="E5-MJMATHI-74" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path><path stroke-width="0" id="E5-MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path stroke-width="0" id="E5-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path stroke-width="0" id="E5-MJMATHI-79" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E5-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="0" id="E5-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path><path stroke-width="0" id="E5-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path stroke-width="0" id="E5-MJMAIN-33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path stroke-width="0" id="E5-MJMAIN-2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z"></path><path stroke-width="0" id="E5-MJMATHI-6D" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E5-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E5-MJMATHI-54" x="0" y="0"></use><use xlink:href="#E5-MJMATHI-61" x="704" y="0"></use><use xlink:href="#E5-MJMATHI-72" x="1233" y="0"></use><use xlink:href="#E5-MJMATHI-67" x="1684" y="0"></use><use xlink:href="#E5-MJMATHI-65" x="2164" y="0"></use><use xlink:href="#E5-MJMATHI-74" x="2630" y="0"></use><use xlink:href="#E5-MJMAIN-3D" x="3268" y="0"></use><use xlink:href="#E5-MJMAIN-28" x="4324" y="0"></use><g transform="translate(4713,0)"><use xlink:href="#E5-MJMATHI-79" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E5-MJMAIN-31" x="692" y="-213"></use></g><use xlink:href="#E5-MJMAIN-2C" x="5657" y="0"></use><g transform="translate(6101,0)"><use xlink:href="#E5-MJMATHI-79" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E5-MJMAIN-32" x="692" y="-213"></use></g><use xlink:href="#E5-MJMAIN-2C" x="7045" y="0"></use><g transform="translate(7489,0)"><use xlink:href="#E5-MJMATHI-79" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E5-MJMAIN-33" x="692" y="-213"></use></g><use xlink:href="#E5-MJMAIN-2E" x="8433" y="0"></use><use xlink:href="#E5-MJMAIN-2E" x="8878" y="0"></use><use xlink:href="#E5-MJMAIN-2E" x="9322" y="0"></use><g transform="translate(9767,0)"><use xlink:href="#E5-MJMATHI-79" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E5-MJMATHI-6D" x="692" y="-213"></use></g><use xlink:href="#E5-MJMAIN-29" x="10978" y="0"></use></g></svg></span></div><script type="math/tex; mode=display" id="MathJax-Element-2">Target = (y_1,y_2,y_3...y_m)</script></div></div><p><span>编码器需要做的是对 Source进行编码，然后通过网络学习将 Source转化为中间语义表示 C：</span></p><div contenteditable="false" spellcheck="false" class="mathjax-block md-end-block md-math-block md-rawblock" id="mathjax-n11" cid="n11" mdtype="math_block"><div class="md-rawblock-container md-math-container" tabindex="-1"><div class="MathJax_SVG_Display" style="text-align: center;"><span class="MathJax_SVG" id="MathJax-Element-3-Frame" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="22.803ex" height="2.634ex" viewBox="0 -809.3 9817.8 1134.2" role="img" focusable="false" style="vertical-align: -0.755ex; max-width: 100%;"><defs><path stroke-width="0" id="E6-MJMATHI-43" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z"></path><path stroke-width="0" id="E6-MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path stroke-width="0" id="E6-MJMATHI-66" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z"></path><path stroke-width="0" id="E6-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path stroke-width="0" id="E6-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path><path stroke-width="0" id="E6-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="0" id="E6-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path><path stroke-width="0" id="E6-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path stroke-width="0" id="E6-MJMAIN-33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path stroke-width="0" id="E6-MJMAIN-2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z"></path><path stroke-width="0" id="E6-MJMATHI-6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E6-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E6-MJMATHI-43" x="0" y="0"></use><use xlink:href="#E6-MJMAIN-3D" x="1037" y="0"></use><use xlink:href="#E6-MJMATHI-66" x="2093" y="0"></use><use xlink:href="#E6-MJMAIN-28" x="2643" y="0"></use><g transform="translate(3032,0)"><use xlink:href="#E6-MJMATHI-78" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E6-MJMAIN-31" x="808" y="-213"></use></g><use xlink:href="#E6-MJMAIN-2C" x="4058" y="0"></use><g transform="translate(4502,0)"><use xlink:href="#E6-MJMATHI-78" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E6-MJMAIN-32" x="808" y="-213"></use></g><use xlink:href="#E6-MJMAIN-2C" x="5528" y="0"></use><g transform="translate(5972,0)"><use xlink:href="#E6-MJMATHI-78" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E6-MJMAIN-33" x="808" y="-213"></use></g><use xlink:href="#E6-MJMAIN-2E" x="6998" y="0"></use><use xlink:href="#E6-MJMAIN-2E" x="7443" y="0"></use><use xlink:href="#E6-MJMAIN-2E" x="7887" y="0"></use><g transform="translate(8332,0)"><use xlink:href="#E6-MJMATHI-78" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E6-MJMATHI-6E" x="808" y="-213"></use></g><use xlink:href="#E6-MJMAIN-29" x="9428" y="0"></use></g></svg></span></div><script type="math/tex; mode=display" id="MathJax-Element-3">C = f(x_1,x_2,x_3...x_n)</script></div></div><p><span>解码器的工作是根据中间的语义表示 C 和之前的中间状态来预测下一个输出值：</span></p><div contenteditable="false" spellcheck="false" class="mathjax-block md-end-block md-math-block md-rawblock" id="mathjax-n13" cid="n13" mdtype="math_block"><div class="md-rawblock-container md-math-container" tabindex="-1"><div class="MathJax_SVG_Display" style="text-align: center;"><span class="MathJax_SVG" id="MathJax-Element-4-Frame" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="24.337ex" height="2.634ex" viewBox="0 -809.3 10478.2 1134.2" role="img" focusable="false" style="vertical-align: -0.755ex; max-width: 100%;"><defs><path stroke-width="0" id="E7-MJMATHI-79" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E7-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E7-MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path stroke-width="0" id="E7-MJMATHI-67" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path><path stroke-width="0" id="E7-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path stroke-width="0" id="E7-MJMATHI-43" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z"></path><path stroke-width="0" id="E7-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path><path stroke-width="0" id="E7-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="0" id="E7-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path stroke-width="0" id="E7-MJMAIN-2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z"></path><path stroke-width="0" id="E7-MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path stroke-width="0" id="E7-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E7-MJMATHI-79" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E7-MJMATHI-69" x="692" y="-213"></use><use xlink:href="#E7-MJMAIN-3D" x="1111" y="0"></use><use xlink:href="#E7-MJMATHI-67" x="2167" y="0"></use><use xlink:href="#E7-MJMAIN-28" x="2647" y="0"></use><use xlink:href="#E7-MJMATHI-43" x="3036" y="0"></use><use xlink:href="#E7-MJMAIN-2C" x="3796" y="0"></use><g transform="translate(4241,0)"><use xlink:href="#E7-MJMATHI-79" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E7-MJMAIN-31" x="692" y="-213"></use></g><use xlink:href="#E7-MJMAIN-2C" x="5184" y="0"></use><g transform="translate(5629,0)"><use xlink:href="#E7-MJMATHI-79" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E7-MJMAIN-32" x="692" y="-213"></use></g><use xlink:href="#E7-MJMAIN-2C" x="6572" y="0"></use><use xlink:href="#E7-MJMAIN-2E" x="7017" y="0"></use><use xlink:href="#E7-MJMAIN-2E" x="7462" y="0"></use><use xlink:href="#E7-MJMAIN-2E" x="7906" y="0"></use><g transform="translate(8351,0)"><use xlink:href="#E7-MJMATHI-79" x="0" y="0"></use><g transform="translate(490,-150)"><use transform="scale(0.707)" xlink:href="#E7-MJMATHI-69" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E7-MJMAIN-2212" x="345" y="0"></use><use transform="scale(0.707)" xlink:href="#E7-MJMAIN-31" x="1123" y="0"></use></g></g><use xlink:href="#E7-MJMAIN-29" x="10089" y="0"></use></g></svg></span></div><script type="math/tex; mode=display" id="MathJax-Element-4">y_i = g(C,y_1,y_2,...y_{i-1})</script></div></div><p><span>至于编码器和解码器，其实现方式有很多种，RNN、GRU、LSTM等，机器翻译中具体的工作方式：</span></p><p><span>编码器和解码器网络在上述工作机制下通过大量的数据（train data为源语言句子，label data为目标语言句子）来学习  f 和 g 的参数，最后给模型输入一个源语言句子，模型输出目标语言句子；那么这个过程源句子到目标句子的过程是如何的呢？和训练过程类似。</span></p><blockquote><p><span>首先对输入源语言句子进行编码和嵌入，Encoder部分训练好的RNN网络通过一个个隐藏层表示来获取词向量的局部信息和全局信息并转化为中间语义表示 C，Decoder部分训练好的RNN网络根据中间语义表示 C和当前的输入词向量来翻译当前词向量的对应输出，当一整个句子的词向量都走完编解码器，那么句子也就翻译完了。</span></p></blockquote><p><span>对于编码器和解码器网络的改进，诸如语义表示 C的生成方式、attention机制、隐藏层的遗忘等，均不影响 Encoder-Decoder的整体框架</span></p></blockquote><blockquote><p><span>Seq2Seq模型：实际上Seq2Seq模型约等于Encoder-Decoder模型，前者强调任务（序列到序列），后者强调结构（编码和解码）</span></p></blockquote><h2><a name="2-rnn以及其缺陷" class="md-header-anchor"></a><span>2. RNN以及其缺陷</span></h2><blockquote><p><img src="D:\Typora\img\RNN.jpg" referrerpolicy="no-referrer" alt="RNN结构"></p><p><span>如上是RNN结构图，这个网络在t时刻接收到输入 </span><img src="https://www.zhihu.com/equation?tex=x_%7Bt%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 之后，隐藏层的值是 </span><img src="https://www.zhihu.com/equation?tex=s_%7Bt%7D" referrerpolicy="no-referrer" alt="[公式]"><span> ，输出值是 </span><img src="https://www.zhihu.com/equation?tex=o_%7Bt%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 。关键一点是， </span><img src="https://www.zhihu.com/equation?tex=s_%7Bt%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 的值不仅仅取决于 </span><img src="https://www.zhihu.com/equation?tex=x_%7Bt%7D" referrerpolicy="no-referrer" alt="[公式]"><span> ，还取决于 </span><img src="https://www.zhihu.com/equation?tex=s_%7Bt-1%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 。我们可以用下面的公式来表示</span><strong><span>循环神经网络</span></strong><span>的计算方法：</span></p><p><img src="D:\Typora\img\rnn1.png" referrerpolicy="no-referrer" alt="RNN更新"></p><p><span>RNN存在的问题：</span></p><ol start='' ><li><span>长程梯度消失</span></li><li><span>信息丢失</span></li></ol><p><span>首先把经典的RNN结构图如下：</span></p><p><img src="D:\Typora\img\rnn2.jpg" referrerpolicy="no-referrer" alt="RNN"></p><p><span>假设我们的时间序列只有三段， </span><img src="https://www.zhihu.com/equation?tex=S_%7B0%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 为给定值，神经元没有激活函数，则RNN最简单的前向传播过程如下：</span></p><p><img src="https://www.zhihu.com/equation?tex=S_%7B1%7D%3DW_%7Bx%7DX_%7B1%7D%2BW_%7Bs%7DS_%7B0%7D%2Bb_%7B1%7D" referrerpolicy="no-referrer" alt="[公式]"><img src="https://www.zhihu.com/equation?tex=O_%7B1%7D%3DW_%7Bo%7DS_%7B1%7D%2Bb_%7B2%7D" referrerpolicy="no-referrer" alt="[公式]"></p><p><img src="https://www.zhihu.com/equation?tex=S_%7B2%7D%3DW_%7Bx%7DX_%7B2%7D%2BW_%7Bs%7DS_%7B1%7D%2Bb_%7B1%7D" referrerpolicy="no-referrer" alt="[公式]"><img src="https://www.zhihu.com/equation?tex=O_%7B2%7D%3DW_%7Bo%7DS_%7B2%7D%2Bb_%7B2%7D" referrerpolicy="no-referrer" alt="[公式]"></p><p><img src="https://www.zhihu.com/equation?tex=S_%7B3%7D%3DW_%7Bx%7DX_%7B3%7D%2BW_%7Bs%7DS_%7B2%7D%2Bb_%7B1%7D" referrerpolicy="no-referrer" alt="[公式]"><img src="https://www.zhihu.com/equation?tex=O_%7B3%7D%3DW_%7Bo%7DS_%7B3%7D%2Bb_%7B2%7D" referrerpolicy="no-referrer" alt="[公式]"></p><p><span>假设在t=3时刻，损失函数为 </span><img src="https://www.zhihu.com/equation?tex=L_%7B3%7D%3D%5Cfrac%7B1%7D%7B2%7D%28Y_%7B3%7D-O_%7B3%7D%29%5E%7B2%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 。</span></p><p><span>则对于一次训练任务的损失函数为 </span><img src="https://www.zhihu.com/equation?tex=L%3D%5Csum_%7Bt%3D0%7D%5E%7BT%7D%7BL_%7Bt%7D%7D" referrerpolicy="no-referrer" alt="[公式]"><span> ，即每一时刻损失值的累加。</span></p><p><span>使用随机梯度下降法训练RNN其实就是对 </span><img src="https://www.zhihu.com/equation?tex=W_%7Bx%7D+" referrerpolicy="no-referrer" alt="[公式]"><span> 、 </span><img src="https://www.zhihu.com/equation?tex=W_%7Bs%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 、 </span><img src="https://www.zhihu.com/equation?tex=W_%7Bo%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 以及 </span><img src="https://www.zhihu.com/equation?tex=b_%7B1%7D" referrerpolicy="no-referrer" alt="[公式]"><img src="https://www.zhihu.com/equation?tex=b_%7B2%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 求偏导，并不断调整它们以使L尽可能达到最小的过程。</span></p><p><span>现在假设我们我们的时间序列只有三段，t1，t2，t3。</span></p><p><span>我们只对t3时刻的 </span><img src="https://www.zhihu.com/equation?tex=W_%7Bx%7D%E3%80%81W_%7Bs%7D%E3%80%81W_%7B0%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 求偏导（其他时刻类似）：</span></p><p><img src="https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial%7BL_%7B3%7D%7D%7D%7B%5Cpartial%7BW_%7B0%7D%7D%7D%3D%5Cfrac%7B%5Cpartial%7BL_%7B3%7D%7D%7D%7B%5Cpartial%7BO_%7B3%7D%7D%7D%5Cfrac%7B%5Cpartial%7BO_%7B3%7D%7D%7D%7B%5Cpartial%7BW_%7Bo%7D%7D%7D" referrerpolicy="no-referrer" alt="[公式]"></p><p><img src="https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial%7BL_%7B3%7D%7D%7D%7B%5Cpartial%7BW_%7Bx%7D%7D%7D%3D%5Cfrac%7B%5Cpartial%7BL_%7B3%7D%7D%7D%7B%5Cpartial%7BO_%7B3%7D%7D%7D%5Cfrac%7B%5Cpartial%7BO_%7B3%7D%7D%7D%7B%5Cpartial%7BS_%7B3%7D%7D%7D%5Cfrac%7B%5Cpartial%7BS_%7B3%7D%7D%7D%7B%5Cpartial%7BW_%7Bx%7D%7D%7D%2B%5Cfrac%7B%5Cpartial%7BL_%7B3%7D%7D%7D%7B%5Cpartial%7BO_%7B3%7D%7D%7D%5Cfrac%7B%5Cpartial%7BO_%7B3%7D%7D%7D%7B%5Cpartial%7BS_%7B3%7D%7D%7D%5Cfrac%7B%5Cpartial%7BS_%7B3%7D%7D%7D%7B%5Cpartial%7BS_%7B2%7D%7D%7D%5Cfrac%7B%5Cpartial%7BS_%7B2%7D%7D%7D%7B%5Cpartial%7BW_%7Bx%7D%7D%7D%2B%5Cfrac%7B%5Cpartial%7BL_%7B3%7D%7D%7D%7B%5Cpartial%7BO_%7B3%7D%7D%7D%5Cfrac%7B%5Cpartial%7BO_%7B3%7D%7D%7D%7B%5Cpartial%7BS_%7B3%7D%7D%7D%5Cfrac%7B%5Cpartial%7BS_%7B3%7D%7D%7D%7B%5Cpartial%7BS_%7B2%7D%7D%7D%5Cfrac%7B%5Cpartial%7BS_%7B2%7D%7D%7D%7B%5Cpartial%7BS_%7B1%7D%7D%7D%5Cfrac%7B%5Cpartial%7BS_%7B1%7D%7D%7D%7B%5Cpartial%7BW_%7Bx%7D%7D%7D" referrerpolicy="no-referrer" alt="[公式]"></p><p><img src="https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial%7BL_%7B3%7D%7D%7D%7B%5Cpartial%7BW_%7Bs%7D%7D%7D%3D%5Cfrac%7B%5Cpartial%7BL_%7B3%7D%7D%7D%7B%5Cpartial%7BO_%7B3%7D%7D%7D%5Cfrac%7B%5Cpartial%7BO_%7B3%7D%7D%7D%7B%5Cpartial%7BS_%7B3%7D%7D%7D%5Cfrac%7B%5Cpartial%7BS_%7B3%7D%7D%7D%7B%5Cpartial%7BW_%7Bs%7D%7D%7D%2B%5Cfrac%7B%5Cpartial%7BL_%7B3%7D%7D%7D%7B%5Cpartial%7BO_%7B3%7D%7D%7D%5Cfrac%7B%5Cpartial%7BO_%7B3%7D%7D%7D%7B%5Cpartial%7BS_%7B3%7D%7D%7D%5Cfrac%7B%5Cpartial%7BS_%7B3%7D%7D%7D%7B%5Cpartial%7BS_%7B2%7D%7D%7D%5Cfrac%7B%5Cpartial%7BS_%7B2%7D%7D%7D%7B%5Cpartial%7BW_%7Bs%7D%7D%7D%2B%5Cfrac%7B%5Cpartial%7BL_%7B3%7D%7D%7D%7B%5Cpartial%7BO_%7B3%7D%7D%7D%5Cfrac%7B%5Cpartial%7BO_%7B3%7D%7D%7D%7B%5Cpartial%7BS_%7B3%7D%7D%7D%5Cfrac%7B%5Cpartial%7BS_%7B3%7D%7D%7D%7B%5Cpartial%7BS_%7B2%7D%7D%7D%5Cfrac%7B%5Cpartial%7BS_%7B2%7D%7D%7D%7B%5Cpartial%7BS_%7B1%7D%7D%7D%5Cfrac%7B%5Cpartial%7BS_%7B1%7D%7D%7D%7B%5Cpartial%7BW_%7Bs%7D%7D%7D" referrerpolicy="no-referrer" alt="[公式]"></p><p><span>可以看出对于 </span><img src="https://www.zhihu.com/equation?tex=W_%7B0%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 求偏导并没有长期依赖，但是对于 </span><img src="https://www.zhihu.com/equation?tex=W_%7Bx%7D%E3%80%81W_%7Bs%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 求偏导，会随着时间序列产生长期依赖。因为 </span><img src="https://www.zhihu.com/equation?tex=S_%7Bt%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 随着时间序列向前传播，而 </span><img src="https://www.zhihu.com/equation?tex=S_%7Bt%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 又是 </span><img src="https://www.zhihu.com/equation?tex=W_%7Bx%7D%E3%80%81W_%7Bs%7D" referrerpolicy="no-referrer" alt="[公式]"><span>的函数。</span></p><p><span>根据上述求偏导的过程，我们可以得出任意时刻对 </span><img src="https://www.zhihu.com/equation?tex=W_%7Bx%7D%E3%80%81W_%7Bs%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 求偏导的公式：</span></p><p><img src="https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial%7BL_%7Bt%7D%7D%7D%7B%5Cpartial%7BW_%7Bx%7D%7D%7D%3D%5Csum_%7Bk%3D0%7D%5E%7Bt%7D%7B%5Cfrac%7B%5Cpartial%7BL_%7Bt%7D%7D%7D%7B%5Cpartial%7BO_%7Bt%7D%7D%7D%5Cfrac%7B%5Cpartial%7BO_%7Bt%7D%7D%7D%7B%5Cpartial%7BS_%7Bt%7D%7D%7D%7D%28%5Cprod_%7Bj%3Dk%2B1%7D%5E%7Bt%7D%7B%5Cfrac%7B%5Cpartial%7BS_%7Bj%7D%7D%7D%7B%5Cpartial%7BS_%7Bj-1%7D%7D%7D%7D%29%5Cfrac%7B%5Cpartial%7BS_%7Bk%7D%7D%7D%7B%5Cpartial%7BW_%7Bx%7D%7D%7D" referrerpolicy="no-referrer" alt="[公式]"></p><p><span>任意时刻对</span><img src="https://www.zhihu.com/equation?tex=W_%7Bs%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 求偏导的公式同上。</span></p><p><span>如果加上激活函数， </span><img src="https://www.zhihu.com/equation?tex=S_%7Bj%7D%3Dtanh%28W_%7Bx%7DX_%7Bj%7D%2BW_%7Bs%7DS_%7Bj-1%7D%2Bb_%7B1%7D%29" referrerpolicy="no-referrer" alt="[公式]"><span> ，</span></p><p><span>则 </span><img src="https://www.zhihu.com/equation?tex=%5Cprod_%7Bj%3Dk%2B1%7D%5E%7Bt%7D%7B%5Cfrac%7B%5Cpartial%7BS_%7Bj%7D%7D%7D%7B%5Cpartial%7BS_%7Bj-1%7D%7D%7D%7D" referrerpolicy="no-referrer" alt="[公式]"><span> = </span><img src="https://www.zhihu.com/equation?tex=%5Cprod_%7Bj%3Dk%2B1%7D%5E%7Bt%7D%7Btanh%5E%7B%27%7D%7DW_%7Bs%7D" referrerpolicy="no-referrer" alt="[公式]"></p><p><span>激活函数tanh和它的导数图像如下。</span></p><p><img src="https://pic2.zhimg.com/80/v2-58e93fc298777fb33776f0fe963fedad_720w.png" referrerpolicy="no-referrer" alt="img"></p><p><span>由上图可以看出 </span><img src="https://www.zhihu.com/equation?tex=tanh%5E%7B%27%7D%5Cleq1" referrerpolicy="no-referrer" alt="[公式]"><span> ，对于训练过程大部分情况下tanh的导数是小于1的，因为很少情况下会出现</span><img src="https://www.zhihu.com/equation?tex=W_%7Bx%7DX_%7Bj%7D%2BW_%7Bs%7DS_%7Bj-1%7D%2Bb_%7B1%7D%3D0" referrerpolicy="no-referrer" alt="[公式]"><span> ，如果 </span><img src="https://www.zhihu.com/equation?tex=W_%7Bs%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 也是一个大于0小于1的值，则当t很大时 </span><img src="https://www.zhihu.com/equation?tex=%5Cprod_%7Bj%3Dk%2B1%7D%5E%7Bt%7D%7Btanh%5E%7B%27%7D%7DW_%7Bs%7D" referrerpolicy="no-referrer" alt="[公式]"><span> ，就会趋近于0，和 </span><img src="https://www.zhihu.com/equation?tex=0.01%5E%7B50%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 趋近与0是一个道理。同理当 </span><img src="https://www.zhihu.com/equation?tex=W_%7Bs%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 很大时 </span><img src="https://www.zhihu.com/equation?tex=%5Cprod_%7Bj%3Dk%2B1%7D%5E%7Bt%7D%7Btanh%5E%7B%27%7D%7DW_%7Bs%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 就会趋近于无穷，这就是RNN中梯度消失和爆炸的原因。</span></p></blockquote><blockquote><p><span>其中 LSTM是通过“门”将长时信息有选择的记忆和过滤来达到缓解梯度消失的问题；</span></p><p><span>详解见：</span><a href='https://zhuanlan.zhihu.com/p/108276255' target='_blank' class='url'>https://zhuanlan.zhihu.com/p/108276255</a></p></blockquote><h2><a name="3-attention机制的引入" class="md-header-anchor"></a><span>3. Attention机制的引入</span></h2><p><span>再提到RNN中长程信息丢失的问题，因为我们在 Decoder 时只用到中间语义表示 C，在RNN中这个语义无论通过什么方式来组合Encoder中的隐藏表示，都无法在句子过长时保留长程信息，这是由梯度决定的，也就是说句子约上，那么离末尾的语义表示越远的词向量的信息就越容易被丢失，那么attention通过对encoder中的所有词向量对应的隐藏表示做有效的组合，来针对当前状态输入的任务获取最有效的的中间语义表示 C，这种有效组合是通过加权来完成的：</span></p><blockquote><p><span>与  decoder 的当前输入状态 越相关的 encoder隐藏表示，赋予越多的权重系数</span></p><p><span>计算 与每一个encoder隐藏表示的相似度，对所有相似度进行，softmax来为每一个隐藏表示分配权重</span></p><p><span>流程如下：</span></p><ul><li><span>首先我们利用RNN结构得到encoder中的hidden state </span><img src="https://www.zhihu.com/equation?tex=%28h_1%2C+h_2%2C+...%2C+h_T%29" referrerpolicy="no-referrer" alt="[公式]"><span> ，</span></li><li><span>假设当前decoder的hidden state 是 </span><img src="https://www.zhihu.com/equation?tex=s_%7Bt-1%7D" referrerpolicy="no-referrer" alt="[公式]"><span> ，我们可以计算每一个输入位置j与当前输出位置的关联性， </span><img src="https://www.zhihu.com/equation?tex=e_%7Btj%7D%3Da%28s_%7Bt-1%7D%2C+h_j%29" referrerpolicy="no-referrer" alt="[公式]"><span> ，写成相应的向量形式即为 </span><img src="https://www.zhihu.com/equation?tex=%5Cvec%7Be_t%7D%3D%28a%28s_%7Bt-1%7D%2Ch_1%29%2C...%2Ca%28s_%7Bt-1%7D%2Ch_T%29%29" referrerpolicy="no-referrer" alt="[公式]"><span> ，其中 </span><img src="https://www.zhihu.com/equation?tex=a" referrerpolicy="no-referrer" alt="[公式]"><span> 是一种相关性的算符，例如常见的有点乘形式 </span><img src="https://www.zhihu.com/equation?tex=%5Cvec%7Be_t%7D%3D%5Cvec%7Bs_%7Bt-1%7D%7D%5ET%5Cvec%7Bh%7D" referrerpolicy="no-referrer" alt="[公式]"><span> ，加权点乘 </span><img src="https://www.zhihu.com/equation?tex=%5Cvec%7Be_t%7D%3D%5Cvec%7Bs_%7Bt-1%7D%7D%5ETW%5Cvec%7Bh%7D" referrerpolicy="no-referrer" alt="[公式]"><span> ，加和 </span><img src="https://www.zhihu.com/equation?tex=%5Cvec%7Be_t%7D%3D%5Cvec%7Bv%7D%5ETtanh%28W_1%5Cvec%7Bh%7D%2BW_2%5Cvec%7Bs_%7Bt-1%7D%7D%29" referrerpolicy="no-referrer" alt="[公式]"><span> 等等。</span></li><li><span>对于 </span><img src="https://www.zhihu.com/equation?tex=%5Cvec%7Be_t%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 进行softmax操作将其normalize得到attention的分布， </span><img src="https://www.zhihu.com/equation?tex=%5Cvec%7B%5Calpha_t%7D%3Dsoftmax%28%5Cvec%7Be_t%7D%29" referrerpolicy="no-referrer" alt="[公式]"><span> ，展开形式为 </span><img src="https://www.zhihu.com/equation?tex=%5Calpha_%7Btj%7D%3D%5Cfrac%7Bexp%28e_%7Btj%7D%29%7D%7B%5Csum_%7Bk%3D1%7D%5ETexp%28e_%7Btk%7D%29%7D" referrerpolicy="no-referrer" alt="[公式]"></li><li><span>利用 </span><img src="https://www.zhihu.com/equation?tex=%5Cvec%7B%5Calpha_t%7D" referrerpolicy="no-referrer" alt="[公式]"><span> 我们可以进行加权求和得到相应的context vector </span><img src="https://www.zhihu.com/equation?tex=%5Cvec%7Bc_t%7D+%3D+%5Csum_%7Bj%3D1%7D%5ET%5Calpha_%7Btj%7Dh_j" referrerpolicy="no-referrer" alt="[公式]"></li><li><span>由此，我们可以计算decoder的下一个hidden state </span><img src="https://www.zhihu.com/equation?tex=s_t+%3D+f%28s_%7Bt-1%7D%2Cy_%7Bt-1%7D%2Cc_t%29" referrerpolicy="no-referrer" alt="[公式]"><span> 以及该位置的输出 </span><img src="https://www.zhihu.com/equation?tex=p%28y_t%7Cy_1%2C...%2Cy_%7Bt-1%7D%2C+%5Cvec%7Bx%7D%29+%3D+g%28y_%7Bi-1%7D%2C+s_i%2C+c_i%29" referrerpolicy="no-referrer" alt="[公式]"><span> 。</span></li></ul><p><span>这里关键的操作是计算encoder与decoder state之间的关联性的权重，得到Attention分布，从而对于当前输出位置得到比较重要的输入位置的权重，在预测输出时相应的会占较大的比重。</span></p><p><span>通过Attention机制的引入，在decoder阶段针对每一个当前输入状态，我们都可以根据相似度来获取其需要的长程信息，而不至于在翻译 “tom bababababababab jerry”中的 “jerry”时，丢失掉 “tom”对翻译带来的作用；</span></p></blockquote><p>&nbsp;</p></div>
+</body>
+</html>
